@@ -127,32 +127,26 @@ export function ProfileCard({
               )}
             </Button>
           </div>
-          <div className="mt-1 flex items-center gap-4">
-            <div className="w-24">
-              <WordRotate 
-                words={[
-                  <ShinyButton key="token" size="xs" variant="blue" disabled className="pointer-events-none">
+          <div className="mt-1">
+            <WordRotate 
+              words={[
+                <div key="token" className="flex items-center gap-2">
+                  <ShinyButton size="xs" variant="blue" disabled className="pointer-events-none">
                     Token
-                  </ShinyButton>,
-                  <ShinyButton key="symbol" size="xs" variant="blue" disabled className="pointer-events-none">
-                    Symbol
-                  </ShinyButton>,
-                  <ShinyButton key="network" size="xs" variant="blue" disabled className="pointer-events-none">
-                    Network
-                  </ShinyButton>,
-                  <ShinyButton key="contract" size="xs" variant="blue" disabled className="pointer-events-none">
-                    Contract
                   </ShinyButton>
-                ]} 
-                className="text-sm font-medium"
-              />
-            </div>
-            <div className="w-56">
-              <WordRotate 
-                words={[
-                  "ギャグ",
-                  "GYAG",
-                  <div key="optimism" className="flex items-center gap-1">
+                  <span className="text-sm font-medium text-blue-500">ギャグ</span>
+                </div>,
+                <div key="symbol" className="flex items-center gap-2">
+                  <ShinyButton size="xs" variant="blue" disabled className="pointer-events-none">
+                    Symbol
+                  </ShinyButton>
+                  <span className="text-sm font-medium text-blue-500">GYAG</span>
+                </div>,
+                <div key="network" className="flex items-center gap-2">
+                  <ShinyButton size="xs" variant="blue" disabled className="pointer-events-none">
+                    Network
+                  </ShinyButton>
+                  <div className="flex items-center gap-1">
                     <div className="relative size-3 shrink-0">
                       <Image
                         src="/networks/op.png"
@@ -161,13 +155,18 @@ export function ProfileCard({
                         className="object-contain"
                       />
                     </div>
-                    <span>Optimism</span>
-                  </div>,
-                  shortenAddress(walletAddress)
-                ]} 
-                className="text-sm font-medium text-blue-500"
-              />
-            </div>
+                    <span className="text-sm font-medium text-blue-500">Optimism</span>
+                  </div>
+                </div>,
+                <div key="contract" className="flex items-center gap-2">
+                  <ShinyButton size="xs" variant="blue" disabled className="pointer-events-none">
+                    Contract
+                  </ShinyButton>
+                  <span className="text-sm font-medium text-blue-500">{shortenAddress(walletAddress)}</span>
+                </div>
+              ]} 
+              className="text-sm font-medium"
+            />
           </div>
         </div>
       </div>
