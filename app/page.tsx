@@ -1,57 +1,65 @@
-import { cn } from "@/lib/utils";
 import { FlickeringGrid } from "@/components/ui/flickering-grid";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import { HyperText } from "@/components/ui/hyper-text";
-import { Marquee } from "@/components/ui/marquee";
 import { DockMenu } from "@/components/ui/dock-menu";
+import { Marquee } from "@/components/ui/marquee";
+import { EventCard } from "@/components/ui/marquee";
+import { Event } from "@/types/events";
 
-const reviews = [
+// サンプルイベントデータ
+const events: Event[] = [
   {
-    name: "Jack",
-    username: "@jack",
-    body: "I've never seen anything like this before. It's amazing. I love it.",
-    img: "https://avatar.vercel.sh/jack",
+    id: "1",
+    type: "POINT_PURCHASE",
+    timestamp: new Date().toISOString(),
+    amount: 1000,
+    user: {
+      name: "Alice",
+      avatar: "https://avatar.vercel.sh/alice"
+    },
+    purchasers: [
+      {
+        imageUrl: "https://avatar.vercel.sh/alice",
+        profileUrl: '#'
+      },
+      {
+        imageUrl: "https://avatar.vercel.sh/bob",
+        profileUrl: '#'
+      },
+      {
+        imageUrl: "https://avatar.vercel.sh/charlie",
+        profileUrl: '#'
+      }
+    ]
   },
-  // ... rest of your reviews array
+  {
+    id: "2",
+    type: "TOKEN_ISSUE",
+    timestamp: new Date().toISOString(),
+    tokenSymbol: "GYAG",
+    user: {
+      name: "Bob",
+      avatar: "https://avatar.vercel.sh/bob"
+    }
+  },
+  {
+    id: "3",
+    type: "TOKEN_PUMP",
+    timestamp: new Date().toISOString(),
+    amount: 500,
+    tokenSymbol: "GYAG",
+    user: {
+      name: "Charlie",
+      avatar: "https://avatar.vercel.sh/charlie"
+    },
+    creator: {
+      name: "Charlie",
+      avatar: "https://avatar.vercel.sh/charlie"
+    }
+  }
 ];
 
-const firstRow = reviews.slice(0, reviews.length / 2);
-const secondRow = reviews.slice(reviews.length / 2);
-
-const ReviewCard = ({
-  img,
-  name,
-  username,
-  body,
-}: {
-  img: string;
-  name: string;
-  username: string;
-  body: string;
-}) => {
-  return (
-    <figure
-      className={cn(
-        "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
-        "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
-        "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]",
-      )}
-    >
-      <div className="flex flex-row items-center gap-2">
-        <img className="rounded-full" width="32" height="32" alt="" src={img} />
-        <div className="flex flex-col">
-          <figcaption className="text-sm font-medium dark:text-white">
-            {name}
-          </figcaption>
-          <p className="text-xs font-medium dark:text-white/40">{username}</p>
-        </div>
-      </div>
-      <blockquote className="mt-2 text-sm">{body}</blockquote>
-    </figure>
-  );
-};
-
-export default function Home() {
+export default function HomePage() {
   return (
     <div className="relative min-h-screen">
       {/* Background FlickeringGrid */}
@@ -85,16 +93,12 @@ export default function Home() {
             <ModeToggle />
           </div>
           <div className="relative w-full border-t border-border/50">
-            <Marquee pauseOnHover className="[--duration:20s] [--gap:0.5rem]">
-              {firstRow.map((review) => (
-                <ReviewCard key={review.username} {...review} />
+            <Marquee pauseOnHover className="[--duration:40s] [--gap:1rem]">
+              {events.map((event, index) => (
+                <EventCard key={index} event={event} />
               ))}
             </Marquee>
-            <Marquee reverse pauseOnHover className="[--duration:20s] [--gap:0.5rem]">
-              {secondRow.map((review) => (
-                <ReviewCard key={review.username} {...review} />
-              ))}
-            </Marquee>
+
             <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-background"></div>
             <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-background"></div>
           </div>

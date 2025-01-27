@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Home, Music2, User } from "lucide-react";
+import { Home, Rocket, User } from "lucide-react";
 import { Dock, DockIcon } from "@/components/ui/dock";
 import Link from "next/link";
 
@@ -17,7 +17,7 @@ export function DockMenu() {
           </DockIcon>
         </Link>
         <DockIcon>
-          <Music2 className="size-6" />
+          <Rocket className="size-6" />
         </DockIcon>
         <Link href="/profile">
           <DockIcon>

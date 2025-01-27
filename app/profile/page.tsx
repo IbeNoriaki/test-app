@@ -38,7 +38,7 @@ export default function ProfilePage() {
             <ModeToggle />
           </div>
           <div className="relative w-full border-t border-border/50">
-            <div className="max-w-2xl mx-auto p-4">
+            <div className="w-full px-2 py-1.5">
               <ProfileCard
                 nickname="pumpum"
                 walletAddress="0xa0Ae8F74dc1968a0269741FdC818685A578DAdB9"

@@ -58,12 +58,8 @@ export default {
   		},
   		keyframes: {
   			marquee: {
-  				from: {
-  					transform: 'translateX(0)'
-  				},
-  				to: {
-  					transform: 'translateX(calc(-100% - var(--gap)))'
-  				}
+  				'0%': { transform: 'translateX(0)' },
+  				'100%': { transform: 'translateX(-50%)' }
   			},
   			'marquee-vertical': {
   				from: {
@@ -72,11 +68,16 @@ export default {
   				to: {
   					transform: 'translateY(calc(-100% - var(--gap)))'
   				}
+  			},
+  			'marquee-right': {
+  				'0%': { transform: 'translate3d(-100%, 0, 0)' },
+  				'100%': { transform: 'translate3d(100%, 0, 0)' }
   			}
   		},
   		animation: {
-  			marquee: 'marquee var(--duration) infinite linear',
-  			'marquee-vertical': 'marquee-vertical var(--duration) linear infinite'
+  			marquee: 'marquee var(--duration) linear infinite',
+  			'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
+  			'marquee-right': 'marquee-right var(--duration) linear infinite'
   		}
   	}
   },
