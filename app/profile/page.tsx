@@ -6,6 +6,17 @@ import { ProfileCard } from "@/components/ui/profile-card";
 import { AssetGrid } from "@/components/ui/asset-grid";
 
 export default function ProfilePage() {
+  const getLast7Days = () => {
+    const dates = Array.from({ length: 7 }, (_, i) => {
+      const d = new Date();
+      d.setDate(d.getDate() - (6 - i));
+      return d.toISOString().split('T')[0];
+    });
+    return dates;
+  };
+
+  const dates = getLast7Days();
+
   const assets = [
     {
       id: "1",
@@ -16,12 +27,13 @@ export default function ProfilePage() {
       change24h: 5.2,
       imageUrl: "/networks/op.png",
       chartData: [
-        { month: "Jan", price: 0.10 },
-        { month: "Feb", price: 0.12 },
-        { month: "Mar", price: 0.11 },
-        { month: "Apr", price: 0.13 },
-        { month: "May", price: 0.14 },
-        { month: "Jun", price: 0.15 },
+        { date: dates[0], price: 0.10 },
+        { date: dates[1], price: 0.12 },
+        { date: dates[2], price: 0.11 },
+        { date: dates[3], price: 0.13 },
+        { date: dates[4], price: 0.14 },
+        { date: dates[5], price: 0.145 },
+        { date: dates[6], price: 0.15 },
       ],
       purchasers: [
         {
@@ -47,12 +59,13 @@ export default function ProfilePage() {
       change24h: -2.1,
       imageUrl: "/networks/op.png",
       chartData: [
-        { month: "Jan", price: 3200 },
-        { month: "Feb", price: 3100 },
-        { month: "Mar", price: 3300 },
-        { month: "Apr", price: 3400 },
-        { month: "May", price: 3600 },
-        { month: "Jun", price: 3450 },
+        { date: dates[0], price: 3200 },
+        { date: dates[1], price: 3100 },
+        { date: dates[2], price: 3300 },
+        { date: dates[3], price: 3400 },
+        { date: dates[4], price: 3600 },
+        { date: dates[5], price: 3450 },
+        { date: dates[6], price: 3450 },
       ]
     },
     {
@@ -64,12 +77,13 @@ export default function ProfilePage() {
       change24h: 8.7,
       imageUrl: "/networks/op.png",
       chartData: [
-        { month: "Jan", price: 2.8 },
-        { month: "Feb", price: 3.1 },
-        { month: "Mar", price: 3.0 },
-        { month: "Apr", price: 3.2 },
-        { month: "May", price: 3.3 },
-        { month: "Jun", price: 3.45 },
+        { date: dates[0], price: 2.8 },
+        { date: dates[1], price: 3.1 },
+        { date: dates[2], price: 3.0 },
+        { date: dates[3], price: 3.2 },
+        { date: dates[4], price: 3.3 },
+        { date: dates[5], price: 3.45 },
+        { date: dates[6], price: 3.45 },
       ]
     },
     {
@@ -81,12 +95,13 @@ export default function ProfilePage() {
       change24h: 0.01,
       imageUrl: "/networks/op.png",
       chartData: [
-        { month: "Jan", price: 1.00 },
-        { month: "Feb", price: 1.00 },
-        { month: "Mar", price: 1.00 },
-        { month: "Apr", price: 1.00 },
-        { month: "May", price: 1.00 },
-        { month: "Jun", price: 1.00 },
+        { date: dates[0], price: 1.00 },
+        { date: dates[1], price: 1.00 },
+        { date: dates[2], price: 1.00 },
+        { date: dates[3], price: 1.00 },
+        { date: dates[4], price: 1.00 },
+        { date: dates[5], price: 1.00 },
+        { date: dates[6], price: 1.00 },
       ]
     },
     {
@@ -98,12 +113,13 @@ export default function ProfilePage() {
       change24h: -1.3,
       imageUrl: "/networks/op.png",
       chartData: [
-        { month: "Jan", price: 1.95 },
-        { month: "Feb", price: 1.90 },
-        { month: "Mar", price: 1.88 },
-        { month: "Apr", price: 1.82 },
-        { month: "May", price: 1.80 },
-        { month: "Jun", price: 1.85 },
+        { date: dates[0], price: 1.95 },
+        { date: dates[1], price: 1.90 },
+        { date: dates[2], price: 1.88 },
+        { date: dates[3], price: 1.82 },
+        { date: dates[4], price: 1.80 },
+        { date: dates[5], price: 1.85 },
+        { date: dates[6], price: 1.85 },
       ]
     },
     {
@@ -115,12 +131,13 @@ export default function ProfilePage() {
       change24h: 3.4,
       imageUrl: "/networks/op.png",
       chartData: [
-        { month: "Jan", price: 14.20 },
-        { month: "Feb", price: 14.50 },
-        { month: "Mar", price: 14.80 },
-        { month: "Apr", price: 15.10 },
-        { month: "May", price: 15.40 },
-        { month: "Jun", price: 15.75 },
+        { date: dates[0], price: 14.20 },
+        { date: dates[1], price: 14.50 },
+        { date: dates[2], price: 14.80 },
+        { date: dates[3], price: 15.10 },
+        { date: dates[4], price: 15.40 },
+        { date: dates[5], price: 15.75 },
+        { date: dates[6], price: 15.75 },
       ]
     }
   ];

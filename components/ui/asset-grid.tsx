@@ -5,6 +5,7 @@ import { CartesianGrid, Line, LineChart, XAxis, YAxis, ResponsiveContainer } fro
 import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from "@/components/ui/chart";
 import { AvatarCircles } from "@/components/ui/avatar-circles";
 import { BorderBeam } from "@/components/ui/border-beam";
+import Image from 'next/image';
 
 interface Asset {
   id: string;
@@ -14,7 +15,7 @@ interface Asset {
   price: number;
   change24h: number;
   imageUrl: string;
-  chartData: { month: string; price: number }[];
+  chartData: { date: string; price: number }[];
   purchasers?: {
     imageUrl: string;
     profileUrl: string;
@@ -33,67 +34,55 @@ export function AssetGrid({ assets }: AssetGridProps) {
     },
   } satisfies ChartConfig);
 
-  const padChartData = (data: { month: string; price: number }[]) => {
-    const paddingCount = 3; // 両端に追加するパディングの数
-    const targetPrice = data[3].price; // 4日目の価格
-    
+  const padChartData = (data: { date: string; price: number }[]) => {
+    const paddingCount = 2;
+    const targetPrice = data[data.length - 1].price; // 最新の価格を基準に
+
     // 価格の最大値と最小値を取得
     const prices = data.map(d => d.price);
     const maxPrice = Math.max(...prices);
     const minPrice = Math.min(...prices);
     const priceRange = maxPrice - minPrice;
     
-    // 4日目の価格を中心とするための調整量を計算
-    const centerOffset = (maxPrice + minPrice) / 2 - targetPrice;
-    
-    // パディングを追加する際の価格の調整
-    const topPadding = priceRange * 0.5; // 上部のパディング
-    const bottomPadding = priceRange * 0.5; // 下部のパディング
-    
-    // すべての価格を調整して4日目が中心になるようにする
-    const adjustedData = data.map(d => ({
-      month: d.month,
-      price: d.price - centerOffset
-    }));
+    // パディングを追加する際の価格の調整（範囲を小さく）
+    const topPadding = priceRange * 0.2;
+    const bottomPadding = priceRange * 0.2;
     
     return [
-      ...Array(paddingCount).fill({ month: '', price: targetPrice - bottomPadding }),
-      ...adjustedData,
-      ...Array(paddingCount).fill({ month: '', price: targetPrice + topPadding })
+      ...Array(paddingCount).fill({ date: '', price: targetPrice - bottomPadding }),
+      ...data,
+      ...Array(paddingCount).fill({ date: '', price: targetPrice + topPadding })
     ];
   };
 
   return (
     <div className="grid grid-cols-2 gap-2 p-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
       {assets.map((asset, index) => (
-        <div 
-          key={asset.id} 
-          className="aspect-square relative rounded-xl border border-white/10 hover:border-white/15 transition-colors duration-200"
-        >
+        <div key={asset.id} className="aspect-square relative rounded-xl border border-white/10 hover:border-white/15 transition-colors duration-200">
           <BorderBeam />
-          {/* Chart (背面) */}
           <div className="absolute inset-0">
             <ResponsiveContainer width="100%" height="100%">
               <ChartContainer config={getChartConfig(asset.change24h)}>
                 <LineChart
-                  data={asset.chartData}
-                  margin={{ top: 20, right: -30, bottom: 20, left: -30 }}
+                  data={padChartData(asset.chartData)}
+                  margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
                 >
                   <CartesianGrid vertical={false} strokeDasharray="3 3" opacity={0.1} />
                   <XAxis
-                    dataKey="month"
+                    dataKey="date"
                     tickLine={false}
                     axisLine={false}
                     tick={false}
                     domain={['dataMin', 'dataMax']}
-                    interval={0}
-                    scale="point"
-                    padding={{ left: 30, right: 30 }}
+                    type="category"
+                    padding={{ left: 10, right: 10 }}
                   />
                   <YAxis
-                    domain={['dataMin', 'dataMax']}
+                    domain={[
+                      (dataMin: number) => dataMin * 0.95,
+                      (dataMax: number) => dataMax * 1.05
+                    ]}
                     hide
-                    padding={{ top: 20, bottom: 20 }}
                   />
                   <ChartTooltip
                     cursor={false}
@@ -112,12 +101,16 @@ export function AssetGrid({ assets }: AssetGridProps) {
           </div>
 
           {/* Token Info (前面) */}
-          <div className="absolute inset-x-0 top-0 p-3">
-            <div className="flex items-center justify-between">
+          <div className="absolute inset-0 p-3">
+            <div className="flex items-start justify-between">
+              <Image
+                src={asset.imageUrl}
+                alt={asset.name}
+                width={24}
+                height={24}
+                className="rounded-full"
+              />
               <div className="flex items-center gap-2">
-                <div className="relative size-8">
-                  <img src={asset.imageUrl} alt={asset.name} className="rounded-full" />
-                </div>
                 <div>
                   <p className="text-sm font-semibold">{asset.symbol}</p>
                   <p className="text-xs text-muted-foreground">{asset.balance.toLocaleString()}</p>
