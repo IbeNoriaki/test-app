@@ -143,13 +143,13 @@ export function ProfileCard({
                   <ShinyButton size="xs" variant="blue" disabled className="pointer-events-none">
                     Token
                   </ShinyButton>
-                  <span className="text-sm font-medium text-blue-500">ギャグ</span>
+                  <span className="text-sm font-semibold">ギャグ</span>
                 </div>,
                 <div key="symbol" className="flex items-center gap-2">
                   <ShinyButton size="xs" variant="blue" disabled className="pointer-events-none">
                     Symbol
                   </ShinyButton>
-                  <span className="text-sm font-medium text-blue-500">GYAG</span>
+                  <span className="text-sm font-semibold">$GYAG</span>
                 </div>,
                 <div key="network" className="flex items-center gap-2">
                   <ShinyButton size="xs" variant="blue" disabled className="pointer-events-none">
@@ -164,14 +164,14 @@ export function ProfileCard({
                         className="object-contain"
                       />
                     </div>
-                    <span className="text-sm font-medium text-blue-500">Optimism</span>
+                    <span className="text-sm font-semibold">Optimism</span>
                   </div>
                 </div>,
                 <div key="contract" className="flex items-center gap-2">
                   <ShinyButton size="xs" variant="blue" disabled className="pointer-events-none">
                     Contract
                   </ShinyButton>
-                  <span className="text-sm font-medium text-blue-500">{shortenAddress(walletAddress)}</span>
+                  <span className="text-sm font-semibold">{shortenAddress(walletAddress)}</span>
                 </div>
               ]} 
               className="text-sm font-medium"

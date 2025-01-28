@@ -58,8 +58,12 @@ export default {
   		},
   		keyframes: {
   			marquee: {
-  				'0%': { transform: 'translateX(0)' },
-  				'100%': { transform: 'translateX(-50%)' }
+  				'0%': {
+  					transform: 'translateX(0)'
+  				},
+  				'100%': {
+  					transform: 'translateX(-50%)'
+  				}
   			},
   			'marquee-vertical': {
   				from: {
@@ -70,14 +74,24 @@ export default {
   				}
   			},
   			'marquee-right': {
-  				'0%': { transform: 'translate3d(-100%, 0, 0)' },
-  				'100%': { transform: 'translate3d(100%, 0, 0)' }
+  				'0%': {
+  					transform: 'translate3d(-100%, 0, 0)'
+  				},
+  				'100%': {
+  					transform: 'translate3d(100%, 0, 0)'
+  				}
+  			},
+  			'border-beam': {
+  				'100%': {
+  					'offset-distance': '100%'
+  				}
   			}
   		},
   		animation: {
   			marquee: 'marquee var(--duration) linear infinite',
   			'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
-  			'marquee-right': 'marquee-right var(--duration) linear infinite'
+  			'marquee-right': 'marquee-right var(--duration) linear infinite',
+  			'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear'
   		}
   	}
   },

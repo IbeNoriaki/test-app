@@ -12,13 +12,26 @@ interface AvatarCirclesProps {
   className?: string;
   numPeople?: number;
   avatarUrls: Avatar[];
+  size?: "sm" | "default";
 }
 
 export const AvatarCircles = ({
   numPeople,
   className,
   avatarUrls,
+  size = "default",
 }: AvatarCirclesProps) => {
+  const sizeClasses = {
+    sm: {
+      container: "h-6 w-6",
+      first: "h-8 w-8",
+    },
+    default: {
+      container: "h-8 w-8",
+      first: "h-12 w-12",
+    },
+  }[size];
+
   return (
     <div className={cn("z-10 flex -space-x-3 rtl:space-x-reverse", className)}>
       {avatarUrls.map((url, index) => (
@@ -34,7 +47,7 @@ export const AvatarCircles = ({
         >
           <div className={cn(
             "relative transition-transform",
-            index === 0 ? "h-12 w-12 -mt-1" : "h-8 w-8 mt-1"
+            index === 0 ? sizeClasses.first : sizeClasses.container
           )}>
             <Image
               className={cn(
