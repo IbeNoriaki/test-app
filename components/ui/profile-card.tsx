@@ -43,31 +43,40 @@ export function ProfileCard({
   };
 
   const shortenAddress = (address: string) => {
-    if (address.length < 10) return address;
-    return `${address.slice(0, 6)}...${address.slice(-4)}`;
+    return `${address.slice(0, 4)}...${address.slice(-4)}`;
   };
 
   return (
-    <div className="flex items-center gap-4 rounded-lg border border-border/50 bg-background/20 backdrop-blur-sm p-3 shadow-sm">
+    <div className="flex items-start gap-4 px-2 py-1.5">
       <div className="shrink-0">
-        <Avatar className="size-24 sm:size-28 rounded-lg">
+        <Avatar className="size-20 sm:size-24 rounded-lg">
           <AvatarImage src={avatarUrl} alt={nickname} className="rounded-lg" />
           <AvatarFallback className="rounded-lg">{getInitials(nickname)}</AvatarFallback>
         </Avatar>
       </div>
-      <div className="min-w-0 flex-1">
+      <div className="flex flex-col gap-1 min-w-0">
         <div className="flex flex-col gap-1">
           {isEditing ? (
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1">
               <Input
                 value={newNickname}
                 onChange={(e) => setNewNickname(e.target.value)}
-                className="h-7 text-base"
+                className="h-7 w-32 text-base"
+                autoFocus
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    onNicknameChange?.(newNickname);
+                    setIsEditing(false);
+                  } else if (e.key === 'Escape') {
+                    setNewNickname(nickname);
+                    setIsEditing(false);
+                  }
+                }}
               />
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-7 w-7"
+                className="h-6 w-6"
                 onClick={() => {
                   onNicknameChange?.(newNickname);
                   setIsEditing(false);
@@ -78,7 +87,7 @@ export function ProfileCard({
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-7 w-7"
+                className="h-6 w-6"
                 onClick={() => {
                   setNewNickname(nickname);
                   setIsEditing(false);
@@ -88,8 +97,8 @@ export function ProfileCard({
               </Button>
             </div>
           ) : (
-            <div className="flex items-center gap-1.5">
-              <span className="text-base font-medium">{nickname}</span>
+            <div className="flex items-center gap-1">
+              <span className="text-base font-medium truncate">{nickname}</span>
               <Button
                 variant="ghost"
                 size="icon"
@@ -127,7 +136,7 @@ export function ProfileCard({
               )}
             </Button>
           </div>
-          <div className="mt-1">
+          <div className="mt-0">
             <WordRotate 
               words={[
                 <div key="token" className="flex items-center gap-2">
