@@ -138,9 +138,10 @@ export function AssetGrid({ assets }: AssetGridProps) {
 
           {/* Avatar Circles (最前面) */}
           <div className="absolute bottom-3 left-3">
-            {index === 0 && asset.purchasers && (
+            {asset.purchasers && (
               <AvatarCircles
                 avatarUrls={asset.purchasers}
+                numPeople={index === 0 ? 9 : 0}  // 最初のトークンのみ追加の人数を表示
                 className="-space-x-2"
                 size="sm"
               />

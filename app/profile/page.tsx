@@ -47,8 +47,21 @@ export default function ProfilePage() {
         {
           imageUrl: "https://avatar.vercel.sh/charlie",
           profileUrl: '#'
+        },
+        {
+          imageUrl: "https://avatar.vercel.sh/dave",
+          profileUrl: '#'
+        },
+        {
+          imageUrl: "https://avatar.vercel.sh/eve",
+          profileUrl: '#'
+        },
+        {
+          imageUrl: "https://avatar.vercel.sh/frank",
+          profileUrl: '#'
         }
-      ]
+      ],
+      numHolders: 9  // 表示される5人 + 非表示1人 + 9人 = 合計15人
     },
     {
       id: "2",
@@ -66,6 +79,16 @@ export default function ProfilePage() {
         { date: dates[4], price: 3600 },
         { date: dates[5], price: 3450 },
         { date: dates[6], price: 3450 },
+      ],
+      purchasers: [
+        {
+          imageUrl: "https://avatar.vercel.sh/grace",
+          profileUrl: '#'
+        },
+        {
+          imageUrl: "https://avatar.vercel.sh/henry",
+          profileUrl: '#'
+        }
       ]
     },
     {
@@ -84,6 +107,20 @@ export default function ProfilePage() {
         { date: dates[4], price: 3.3 },
         { date: dates[5], price: 3.45 },
         { date: dates[6], price: 3.45 },
+      ],
+      purchasers: [
+        {
+          imageUrl: "https://avatar.vercel.sh/ian",
+          profileUrl: '#'
+        },
+        {
+          imageUrl: "https://avatar.vercel.sh/jack",
+          profileUrl: '#'
+        },
+        {
+          imageUrl: "https://avatar.vercel.sh/kelly",
+          profileUrl: '#'
+        }
       ]
     },
     {
