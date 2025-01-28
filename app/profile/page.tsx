@@ -143,7 +143,7 @@ export default function ProfilePage() {
   ];
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen overflow-x-hidden">
       {/* Background FlickeringGrid */}
       <div className="fixed inset-0 z-0">
         <FlickeringGrid
