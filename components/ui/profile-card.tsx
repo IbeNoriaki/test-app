@@ -17,7 +17,7 @@ interface ProfileCardProps {
 }
 
 export function ProfileCard({
-  avatarUrl = "https://avatar.vercel.sh/default",
+  avatarUrl = "/Avatar/image.png",
   nickname,
   walletAddress,
   onNicknameChange,

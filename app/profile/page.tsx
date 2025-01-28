@@ -179,7 +179,7 @@ export default function ProfilePage() {
               <ProfileCard
                 nickname="pumpum"
                 walletAddress="0xa0Ae8F74dc1968a0269741FdC818685A578DAdB9"
-                avatarUrl="https://avatar.vercel.sh/pumpum"
+                avatarUrl="/Avatar/image.png"
               />
             </div>
           </div>

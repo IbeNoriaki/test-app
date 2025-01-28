@@ -58,8 +58,15 @@ export function AssetGrid({ assets }: AssetGridProps) {
   return (
     <div className="grid grid-cols-2 gap-2 p-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
       {assets.map((asset, index) => (
-        <div key={asset.id} className="aspect-square relative rounded-xl border border-white/10 hover:border-white/15 transition-colors duration-200">
-          <BorderBeam />
+        <div key={asset.id} className="aspect-square relative rounded-xl border border-black/5 dark:border-white/10 hover:border-black/10 dark:hover:border-white/15 transition-colors duration-200">
+          <BorderBeam
+            colorFrom="#60A5FA"  // blue-400 - FlickeringGridと同じ青を使用
+            colorTo="#93C5FD"    // blue-300 - より明るい青へのグラデーション
+            duration={20}        // よりゆっくりとした動き
+            size={250}          // サイズを少し小さく
+            borderWidth={1}     // より細い線
+            anchor={45}         // 角度を調整
+          />
           <div className="absolute inset-0">
             <ResponsiveContainer width="100%" height="100%">
               <ChartContainer config={getChartConfig(asset.change24h)}>
@@ -103,19 +110,22 @@ export function AssetGrid({ assets }: AssetGridProps) {
           {/* Token Info (前面) */}
           <div className="absolute inset-0 p-3">
             <div className="flex items-start justify-between">
-              <Image
-                src={asset.imageUrl}
-                alt={asset.name}
-                width={24}
-                height={24}
-                className="rounded-full"
-              />
+              {/* 左側: アイコンとシンボル/保有量 */}
               <div className="flex items-center gap-2">
+                <Image
+                  src={asset.imageUrl}
+                  alt={asset.name}
+                  width={24}
+                  height={24}
+                  className="rounded-full"
+                />
                 <div>
                   <p className="text-sm font-semibold">{asset.symbol}</p>
                   <p className="text-xs text-muted-foreground">{asset.balance.toLocaleString()}</p>
                 </div>
               </div>
+
+              {/* 右側: 価格と変動率 */}
               <div className="text-right">
                 <p className="text-sm font-semibold">${asset.price.toFixed(2)}</p>
                 <p className={`text-xs ${asset.change24h >= 0 ? 'text-green-500' : 'text-red-500'} flex items-center gap-0.5`}>
