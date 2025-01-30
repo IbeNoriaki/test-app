@@ -176,6 +176,96 @@ export default function ProfilePage() {
         { date: dates[5], price: 15.75 },
         { date: dates[6], price: 15.75 },
       ]
+    },
+    {
+      id: "7",
+      name: "Uniswap",
+      symbol: "UNI",
+      balance: 200,
+      price: 7.25,
+      change24h: -0.8,
+      imageUrl: "/networks/op.png",
+      chartData: [
+        { date: dates[0], price: 6.8 },
+        { date: dates[1], price: 7.0 },
+        { date: dates[2], price: 7.2 },
+        { date: dates[3], price: 7.4 },
+        { date: dates[4], price: 7.6 },
+        { date: dates[5], price: 7.8 },
+        { date: dates[6], price: 7.25 },
+      ]
+    },
+    {
+      id: "8",
+      name: "Aave",
+      symbol: "AAVE",
+      balance: 5,
+      price: 95.50,
+      change24h: 2.3,
+      imageUrl: "/networks/op.png",
+      chartData: [
+        { date: dates[0], price: 93.2 },
+        { date: dates[1], price: 94.5 },
+        { date: dates[2], price: 96.8 },
+        { date: dates[3], price: 98.0 },
+        { date: dates[4], price: 100.3 },
+        { date: dates[5], price: 99.0 },
+        { date: dates[6], price: 95.5 },
+      ]
+    },
+    {
+      id: "9",
+      name: "Polygon",
+      symbol: "MATIC",
+      balance: 1500,
+      price: 0.85,
+      change24h: 1.7,
+      imageUrl: "/networks/op.png",
+      chartData: [
+        { date: dates[0], price: 0.80 },
+        { date: dates[1], price: 0.82 },
+        { date: dates[2], price: 0.84 },
+        { date: dates[3], price: 0.86 },
+        { date: dates[4], price: 0.88 },
+        { date: dates[5], price: 0.85 },
+        { date: dates[6], price: 0.85 },
+      ]
+    },
+    {
+      id: "10",
+      name: "Compound",
+      symbol: "COMP",
+      balance: 10,
+      price: 65.30,
+      change24h: -1.5,
+      imageUrl: "/networks/op.png",
+      chartData: [
+        { date: dates[0], price: 63.8 },
+        { date: dates[1], price: 64.0 },
+        { date: dates[2], price: 64.2 },
+        { date: dates[3], price: 64.4 },
+        { date: dates[4], price: 64.6 },
+        { date: dates[5], price: 64.8 },
+        { date: dates[6], price: 65.3 },
+      ]
+    },
+    {
+      id: "11",
+      name: "Maker",
+      symbol: "MKR",
+      balance: 0.5,
+      price: 1950.75,
+      change24h: 3.2,
+      imageUrl: "/networks/op.png",
+      chartData: [
+        { date: dates[0], price: 1920 },
+        { date: dates[1], price: 1930 },
+        { date: dates[2], price: 1940 },
+        { date: dates[3], price: 1950 },
+        { date: dates[4], price: 1960 },
+        { date: dates[5], price: 1970 },
+        { date: dates[6], price: 1950.75 },
+      ]
     }
   ];
 
