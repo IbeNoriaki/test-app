@@ -9,13 +9,13 @@ import { BorderBeam } from "@/components/ui/border-beam";
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import Image from 'next/image';
+import { cn } from "@/lib/utils";
 
 interface Asset {
   id: string;
@@ -186,6 +186,9 @@ export function AssetGrid({ assets }: AssetGridProps) {
                   e.preventDefault();
                   if (currentPage > 1) setCurrentPage(currentPage - 1);
                 }}
+                className={cn(
+                  currentPage === 1 && "pointer-events-none opacity-50"
+                )}
               />
             </PaginationItem>
             
@@ -198,6 +201,7 @@ export function AssetGrid({ assets }: AssetGridProps) {
                     e.preventDefault();
                     setCurrentPage(page);
                   }}
+                  size="default"
                 >
                   {page}
                 </PaginationLink>
@@ -211,6 +215,9 @@ export function AssetGrid({ assets }: AssetGridProps) {
                   e.preventDefault();
                   if (currentPage < totalPages) setCurrentPage(currentPage + 1);
                 }}
+                className={cn(
+                  currentPage === totalPages && "pointer-events-none opacity-50"
+                )}
               />
             </PaginationItem>
           </PaginationContent>
