@@ -85,13 +85,18 @@ export default {
   				'100%': {
   					'offset-distance': '100%'
   				}
+  			},
+  			'marquee-vertical-reverse': {
+  				from: { transform: 'translateY(calc(-100% - var(--gap)))' },
+  				to: { transform: 'translateY(0)' }
   			}
   		},
   		animation: {
   			marquee: 'marquee var(--duration) linear infinite',
   			'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
   			'marquee-right': 'marquee-right var(--duration) linear infinite',
-  			'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear'
+  			'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
+  			'marquee-vertical-reverse': 'marquee-vertical-reverse var(--duration) linear infinite',
   		}
   	}
   },

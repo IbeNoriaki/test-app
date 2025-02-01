@@ -5,6 +5,8 @@ import { DockMenu } from "@/components/ui/dock-menu";
 import { Marquee } from "@/components/ui/marquee";
 import { EventCard } from "@/components/ui/marquee";
 import { Event } from "@/types/events";
+import { MarqueeVertical } from "@/components/ui/marquee-vertical";
+import { TokenCard } from "@/components/ui/token-card";
 
 // サンプルイベントデータ
 const events: Event[] = [
@@ -59,6 +61,54 @@ const events: Event[] = [
   }
 ];
 
+// tokensデータを2つの配列に分割
+const tokens = [
+  { type: 'token' as const, symbol: 'GYAG' },
+  { type: 'point' as const, amount: 1000 },
+  { type: 'token' as const, symbol: 'PMPM' },
+  { type: 'point' as const, amount: 500 },
+  { type: 'token' as const, symbol: 'LOVE' },
+  { type: 'token' as const, symbol: 'MEME' },
+  { type: 'token' as const, symbol: 'COOL' },
+  { type: 'point' as const, amount: 200 },
+  { type: 'token' as const, symbol: 'HYPE' },
+  { type: 'point' as const, amount: 300 },
+  { type: 'token' as const, symbol: 'FUN' },
+  { type: 'point' as const, amount: 400 },
+  { type: 'token' as const, symbol: 'WOW' },
+  { type: 'point' as const, amount: 600 },
+  { type: 'token' as const, symbol: 'YAY' },
+  { type: 'point' as const, amount: 700 },
+  { type: 'token' as const, symbol: 'ZAP' },
+  { type: 'point' as const, amount: 800 },
+  { type: 'token' as const, symbol: 'BOOM' },
+  { type: 'point' as const, amount: 900 },
+  { type: 'token' as const, symbol: 'EXTRA' },
+  { type: 'point' as const, amount: 1000 },
+  { type: 'token' as const, symbol: 'MORE' },
+  { type: 'point' as const, amount: 1100 },
+  { type: 'token' as const, symbol: 'PLUS' },
+  { type: 'point' as const, amount: 1200 },
+  { type: 'token' as const, symbol: 'ADDED' },
+  { type: 'point' as const, amount: 1300 },
+  { type: 'token' as const, symbol: 'BONUS' },
+  { type: 'point' as const, amount: 1400 },
+  { type: 'token' as const, symbol: 'EXTRA1' },
+  { type: 'point' as const, amount: 1500 },
+  { type: 'token' as const, symbol: 'EXTRA2' },
+  { type: 'point' as const, amount: 1600 },
+  { type: 'token' as const, symbol: 'EXTRA3' },
+  { type: 'point' as const, amount: 1700 },
+  { type: 'token' as const, symbol: 'EXTRA4' },
+  { type: 'point' as const, amount: 1800 },
+  { type: 'token' as const, symbol: 'EXTRA5' },
+  { type: 'point' as const, amount: 1900 },
+];
+
+const leftColumn = tokens.slice(0, 13);
+const middleColumn = tokens.slice(13, 26);
+const rightColumn = tokens.slice(26, 39);
+
 export default function HomePage() {
   return (
     <div className="relative min-h-screen">
@@ -99,8 +149,64 @@ export default function HomePage() {
               ))}
             </Marquee>
 
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-background"></div>
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-background"></div>
+            {/* 新しく追加するVertical Marquee */}
+            <div className="absolute top-full left-1/2 -translate-x-1/2 flex gap-2 h-[400px]">
+              <div className="w-20">
+                <MarqueeVertical 
+                  pauseOnHover 
+                  className="[--duration:20s] h-full"
+                >
+                  {leftColumn.map((token, index) => (
+                    <TokenCard 
+                      key={`token-left-${index}`} 
+                      type={token.type}
+                      symbol={token.symbol}
+                      amount={token.amount}
+                    />
+                  ))}
+                </MarqueeVertical>
+              </div>
+
+              <div className="w-20">
+                <MarqueeVertical 
+                  pauseOnHover 
+                  reverse
+                  className="[--duration:20s] h-full"
+                >
+                  {middleColumn.map((token, index) => (
+                    <TokenCard 
+                      key={`token-middle-${index}`} 
+                      type={token.type}
+                      symbol={token.symbol}
+                      amount={token.amount}
+                    />
+                  ))}
+                </MarqueeVertical>
+              </div>
+
+              <div className="w-20">
+                <MarqueeVertical 
+                  pauseOnHover 
+                  className="[--duration:20s] h-full"
+                >
+                  {rightColumn.map((token, index) => (
+                    <TokenCard 
+                      key={`token-right-${index}`} 
+                      type={token.type}
+                      symbol={token.symbol}
+                      amount={token.amount}
+                    />
+                  ))}
+                </MarqueeVertical>
+              </div>
+
+              {/* グラデーションオーバーレイ */}
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-background" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background" />
+            </div>
+
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-background" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-background" />
           </div>
         </header>
 
