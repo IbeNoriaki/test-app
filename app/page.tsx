@@ -143,80 +143,82 @@ export default function HomePage() {
             />
             <ModeToggle />
           </div>
-          <div className="relative w-full border-t border-border/50">
+        </header>
+
+        {/* Main content area */}
+        <main className="flex flex-col gap-8">
+          {/* Marquee section */}
+          <div className="pt-16 border-t border-border/50">
             <Marquee pauseOnHover className="[--duration:40s] [--gap:1rem]">
               {events.map((event, index) => (
                 <EventCard key={index} event={event} />
               ))}
             </Marquee>
-
-            {/* Add Carousel section */}
-            <div className="mt-32 px-4">
-              <CarouselPlugin />
-            </div>
-
-            {/* 新しく追加するVertical Marquee */}
-            <div className="absolute top-full left-1/2 -translate-x-1/2 flex gap-2 h-[400px]">
-              <div className="w-20">
-                <MarqueeVertical 
-                  pauseOnHover 
-                  className="[--duration:20s] h-full"
-                >
-                  {leftColumn.map((token, index) => (
-                    <TokenCard 
-                      key={`token-left-${index}`} 
-                      type={token.type}
-                      symbol={token.symbol}
-                      amount={token.amount}
-                    />
-                  ))}
-                </MarqueeVertical>
-              </div>
-
-              <div className="w-20">
-                <MarqueeVertical 
-                  pauseOnHover 
-                  reverse
-                  className="[--duration:20s] h-full"
-                >
-                  {middleColumn.map((token, index) => (
-                    <TokenCard 
-                      key={`token-middle-${index}`} 
-                      type={token.type}
-                      symbol={token.symbol}
-                      amount={token.amount}
-                    />
-                  ))}
-                </MarqueeVertical>
-              </div>
-
-              <div className="w-20">
-                <MarqueeVertical 
-                  pauseOnHover 
-                  className="[--duration:20s] h-full"
-                >
-                  {rightColumn.map((token, index) => (
-                    <TokenCard 
-                      key={`token-right-${index}`} 
-                      type={token.type}
-                      symbol={token.symbol}
-                      amount={token.amount}
-                    />
-                  ))}
-                </MarqueeVertical>
-              </div>
-
-              {/* グラデーションオーバーレイ */}
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-background" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background" />
-            </div>
-
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-background" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-background" />
           </div>
-        </header>
 
-        {/* Updated Dock implementation */}
+          {/* Carousel section */}
+          <div className="px-4">
+            <CarouselPlugin />
+          </div>
+
+          {/* Vertical Marquee section */}
+          <div className="relative flex gap-2 h-[400px] justify-center px-4">
+            <div className="w-20">
+              <MarqueeVertical 
+                pauseOnHover 
+                className="[--duration:20s] h-full"
+              >
+                {leftColumn.map((token, index) => (
+                  <TokenCard 
+                    key={`token-left-${index}`} 
+                    type={token.type}
+                    symbol={token.symbol}
+                    amount={token.amount}
+                  />
+                ))}
+              </MarqueeVertical>
+            </div>
+
+            <div className="w-20">
+              <MarqueeVertical 
+                pauseOnHover 
+                reverse
+                className="[--duration:20s] h-full"
+              >
+                {middleColumn.map((token, index) => (
+                  <TokenCard 
+                    key={`token-middle-${index}`} 
+                    type={token.type}
+                    symbol={token.symbol}
+                    amount={token.amount}
+                  />
+                ))}
+              </MarqueeVertical>
+            </div>
+
+            <div className="w-20">
+              <MarqueeVertical 
+                pauseOnHover 
+                className="[--duration:20s] h-full"
+              >
+                {rightColumn.map((token, index) => (
+                  <TokenCard 
+                    key={`token-right-${index}`} 
+                    type={token.type}
+                    symbol={token.symbol}
+                    amount={token.amount}
+                  />
+                ))}
+              </MarqueeVertical>
+            </div>
+
+            {/* グラデーションオーバーレイ */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-background" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background" />
+          </div>
+        </main>
+
+        {/* Dock Menu */}
         <div className="fixed bottom-0 left-0 right-0 flex justify-center p-4 z-20">
           <DockMenu />
         </div>
