@@ -7,6 +7,7 @@ import { EventCard } from "@/components/ui/marquee";
 import { Event } from "@/types/events";
 import { MarqueeVertical } from "@/components/ui/marquee-vertical";
 import { TokenCard } from "@/components/ui/token-card";
+import { CarouselPlugin } from "@/components/ui/carousel-plugin";
 
 // サンプルイベントデータ
 const events: Event[] = [
@@ -148,6 +149,11 @@ export default function HomePage() {
                 <EventCard key={index} event={event} />
               ))}
             </Marquee>
+
+            {/* Add Carousel section */}
+            <div className="mt-32 px-4">
+              <CarouselPlugin />
+            </div>
 
             {/* 新しく追加するVertical Marquee */}
             <div className="absolute top-full left-1/2 -translate-x-1/2 flex gap-2 h-[400px]">
