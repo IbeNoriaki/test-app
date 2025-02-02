@@ -20,6 +20,9 @@ export function CarouselPlugin() {
 
   return (
     <Carousel
+      opts={{
+        loop: true,
+      }}
       plugins={[plugin.current]}
       className="w-full max-w-xl mx-auto"
       onMouseEnter={plugin.current.stop}
