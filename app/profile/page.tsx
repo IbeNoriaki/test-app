@@ -4,6 +4,8 @@ import { HyperText } from "@/components/ui/hyper-text";
 import { DockMenu } from "@/components/ui/dock-menu";
 import { ProfileCard } from "@/components/ui/profile-card";
 import { AssetGrid } from "@/components/ui/asset-grid";
+import { Separator } from "@/components/ui/separator";
+import { AssetTable } from "@/components/ui/asset-table";
 
 export default function ProfilePage() {
   const getLast7Days = () => {
@@ -269,6 +271,82 @@ export default function ProfilePage() {
     }
   ];
 
+  const suggestionAssets = [
+    ...assets,
+    {
+      id: "12",
+      name: "Synthetix",
+      symbol: "SNX",
+      price: 3.25,
+      change24h: 4.8,
+      imageUrl: "/networks/op.png",
+    },
+    {
+      id: "13",
+      name: "Render",
+      symbol: "RNDR",
+      price: 7.85,
+      change24h: -2.3,
+      imageUrl: "/networks/op.png",
+    },
+    {
+      id: "14",
+      name: "Injective",
+      symbol: "INJ",
+      price: 34.20,
+      change24h: 6.7,
+      imageUrl: "/networks/op.png",
+    },
+    {
+      id: "15",
+      name: "Sui",
+      symbol: "SUI",
+      price: 1.65,
+      change24h: -1.2,
+      imageUrl: "/networks/op.png",
+    },
+    {
+      id: "16",
+      name: "Celestia",
+      symbol: "TIA",
+      price: 12.45,
+      change24h: 8.9,
+      imageUrl: "/networks/op.png",
+    },
+    {
+      id: "17",
+      name: "Stacks",
+      symbol: "STX",
+      price: 2.35,
+      change24h: 3.1,
+      imageUrl: "/networks/op.png",
+    },
+    {
+      id: "18",
+      name: "Immutable",
+      symbol: "IMX",
+      price: 3.15,
+      change24h: -4.2,
+      imageUrl: "/networks/op.png",
+    },
+    {
+      id: "19",
+      name: "Mantle",
+      symbol: "MNT",
+      price: 0.95,
+      change24h: 2.8,
+      imageUrl: "/networks/op.png",
+    },
+    {
+      id: "20",
+      name: "Sei",
+      symbol: "SEI",
+      price: 0.75,
+      change24h: 5.6,
+      imageUrl: "/networks/op.png",
+    }
+  ];
+
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       {/* Background FlickeringGrid */}
@@ -313,10 +391,14 @@ export default function ProfilePage() {
         </header>
 
         {/* Asset Grid */}
-        <main className="pt-40 pb-24">  {/* ProfileCardの高さ + 余白を確保 */}
-          <AssetGrid
-            assets={assets}
-          />
+        <main className="pt-40 pb-24">
+          <AssetGrid assets={assets} />
+          <div className="mt-8">
+            <Separator className="max-w-3xl mx-auto" />
+            <div className="mt-8">
+              <AssetTable assets={suggestionAssets} />
+            </div>
+          </div>
         </main>
 
         {/* Dock Menu */}
