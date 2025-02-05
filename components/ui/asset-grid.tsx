@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/pagination";
 import Image from 'next/image';
 import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
 
 interface Asset {
   id: string;
@@ -37,6 +38,7 @@ interface AssetGridProps {
 }
 
 export function AssetGrid({ assets }: AssetGridProps) {
+  const { theme } = useTheme();
   const ITEMS_PER_PAGE = 6;
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -84,12 +86,12 @@ export function AssetGrid({ assets }: AssetGridProps) {
         {getCurrentPageItems().map((asset, index) => (
           <div key={asset.id} className="aspect-square relative rounded-xl border border-black/5 dark:border-white/10 hover:border-black/10 dark:hover:border-white/15 transition-colors duration-200">
             <BorderBeam
-              colorFrom="#60A5FA"  // blue-400 - FlickeringGridと同じ青を使用
-              colorTo="#93C5FD"    // blue-300 - より明るい青へのグラデーション
-              duration={20}        // よりゆっくりとした動き
-              size={250}          // サイズを少し小さく
-              borderWidth={1}     // より細い線
-              anchor={45}         // 角度を調整
+              colorFrom={theme === 'dark' ? "#60A5FA" : "#3B82F6"}
+              colorTo={theme === 'dark' ? "#93C5FD" : "#60A5FA"}
+              duration={20}
+              size={250}
+              borderWidth={1}
+              anchor={45}
             />
             <div className="absolute inset-0">
               <ResponsiveContainer width="100%" height="100%">
