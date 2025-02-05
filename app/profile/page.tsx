@@ -394,8 +394,23 @@ export default function ProfilePage() {
         <main className="pt-40 pb-24">
           <AssetGrid assets={assets} />
           <div className="mt-8">
-            <Separator className="max-w-3xl mx-auto" />
-            <div className="mt-8">
+            <div className="max-w-3xl mx-auto px-2">
+              <div className="space-y-1">
+                <h2 className="text-lg font-semibold">Suggestions</h2>
+                <p className="text-sm text-muted-foreground">
+                  Discover new tokens that might interest you based on your holdings.
+                </p>
+              </div>
+              <Separator className="my-4" />
+              <div className="flex h-5 items-center space-x-4 text-sm">
+                <div>Popular</div>
+                <Separator orientation="vertical" />
+                <div>New</div>
+                <Separator orientation="vertical" />
+                <div>Trending</div>
+              </div>
+            </div>
+            <div className="mt-4">
               <AssetTable assets={suggestionAssets} />
             </div>
           </div>
