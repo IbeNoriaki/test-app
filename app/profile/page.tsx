@@ -6,6 +6,7 @@ import { ProfileCard } from "@/components/ui/profile-card";
 import { AssetGrid } from "@/components/ui/asset-grid";
 import { Separator } from "@/components/ui/separator";
 import { AssetTable } from "@/components/ui/asset-table";
+import { AnalyticsSummary } from "@/components/ui/analytics-summary"
 
 export default function ProfilePage() {
   const getLast7Days = () => {
@@ -390,8 +391,13 @@ export default function ProfilePage() {
           </div>
         </header>
 
+        {/* Analytics Summary */}
+        <div className="mt-48 mb-8">
+          <AnalyticsSummary />
+        </div>
+
         {/* Asset Grid */}
-        <main className="pt-40 pb-24">
+        <main className="pb-24">
           <AssetGrid assets={assets} />
           <div className="mt-8">
             <div className="max-w-3xl mx-auto px-2">

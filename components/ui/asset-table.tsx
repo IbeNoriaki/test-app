@@ -58,7 +58,7 @@ export function AssetTable({ assets }: AssetTableProps) {
               <TableHead className="sticky left-0 bg-background">Token</TableHead>
               <TableHead className="text-right">Price</TableHead>
               <TableHead className="text-right">24h Change</TableHead>
-              <TableHead className="text-right">Holders</TableHead>
+              <TableHead>Holders</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -95,9 +95,9 @@ export function AssetTable({ assets }: AssetTableProps) {
                     {Math.abs(asset.change24h)}%
                   </div>
                 </TableCell>
-                <TableCell className="text-right">
+                <TableCell>
                   {asset.purchasers && (
-                    <div className="flex justify-end">
+                    <div className="flex">
                       <AvatarCircles
                         avatarUrls={asset.purchasers}
                         className="-space-x-2"
