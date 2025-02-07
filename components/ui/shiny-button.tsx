@@ -32,7 +32,7 @@ interface ShinyButtonProps
   className?: string;
   disabled?: boolean;
   size?: "xs" | "sm" | "md" | "lg";
-  variant?: "yellow" | "blue" | "green";
+  variant?: "yellow" | "blue" | "green" | "red";
 }
 
 export const ShinyButton = React.forwardRef<
@@ -54,6 +54,7 @@ export const ShinyButton = React.forwardRef<
           'bg-yellow-50 dark:bg-yellow-950/10': variant === 'yellow',
           'bg-blue-50 dark:bg-blue-950/10': variant === 'blue',
           'bg-green-50 dark:bg-green-950/10': variant === 'green',
+          'bg-red-50 dark:bg-red-950/10': variant === 'red',
         },
         className,
       )}

@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { TrendingUp, TrendingDown } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { ShinyButton } from "@/components/ui/shiny-button"
 
 const fansData = Array.from({ length: 10 }, (_, i) => ({
   name: `ファン${i + 1}`,
@@ -17,21 +18,23 @@ export function RankingGrid() {
     data: typeof fansData[0], 
     isLarge?: boolean 
   }) => (
-    <div className={cn(
-      "absolute bottom-1 right-1 bg-background/80 backdrop-blur-sm rounded-lg",
-      isLarge ? "p-2" : "p-1"
-    )}>
-      <div className={cn(
-        "flex items-center gap-0.5",
-        data.change24h >= 0 ? "text-green-500" : "text-red-500",
-        isLarge ? "text-sm" : "text-[10px]"
-      )}>
-        {data.change24h >= 0 
-          ? <TrendingUp className={cn(isLarge ? "size-3" : "size-2")} /> 
-          : <TrendingDown className={cn(isLarge ? "size-3" : "size-2")} />
-        }
-        {Math.abs(data.change24h).toFixed(1)}%
-      </div>
+    <div className="absolute bottom-1 right-1">
+      <ShinyButton
+        size={isLarge ? "sm" : "xs"}
+        variant={data.change24h >= 0 ? "green" : "red"}
+        className="pointer-events-none"
+      >
+        <div className={cn(
+          "flex items-center gap-0.5",
+          data.change24h >= 0 ? "text-green-500" : "text-red-500"
+        )}>
+          {data.change24h >= 0 
+            ? <TrendingUp className={cn(isLarge ? "size-3" : "size-2")} /> 
+            : <TrendingDown className={cn(isLarge ? "size-3" : "size-2")} />
+          }
+          {Math.abs(data.change24h).toFixed(1)}%
+        </div>
+      </ShinyButton>
     </div>
   )
 
