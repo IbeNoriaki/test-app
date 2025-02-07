@@ -28,13 +28,13 @@ export function AnalyticsSummary() {
         {Object.entries(summaryData).map(([key, data]) => (
           <div
             key={key}
-            className="flex-1 flex items-center gap-4 border-l first:border-l-0 px-6 py-4 sm:px-8 sm:py-6"
+            className="flex-1 flex items-center gap-6 border-l first:border-l-0 px-4 py-4 sm:px-6 sm:py-6"
           >
-            <Avatar className="h-12 w-12">
+            <Avatar className="h-12 w-12 shrink-0">
               <AvatarImage src={data.avatar} alt={data.label} />
               <AvatarFallback>{data.label[0]}</AvatarFallback>
             </Avatar>
-            <div className="flex flex-col">
+            <div className="flex flex-col min-w-0 flex-1">
               <span className="text-xs text-muted-foreground">
                 {data.label}
               </span>

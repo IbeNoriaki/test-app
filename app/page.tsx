@@ -8,6 +8,7 @@ import { Event } from "@/types/events";
 import { MarqueeVertical } from "@/components/ui/marquee-vertical";
 import { TokenCard } from "@/components/ui/token-card";
 import { CarouselPlugin } from "@/components/ui/carousel-plugin";
+import { RankingGrid } from "@/components/ui/ranking-grid";
 
 // サンプルイベントデータ
 const events: Event[] = [
@@ -215,6 +216,11 @@ export default function HomePage() {
             {/* グラデーションオーバーレイ */}
             <div className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-background" />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background" />
+          </div>
+
+          {/* Ranking Grid */}
+          <div className="mt-8">
+            <RankingGrid />
           </div>
         </main>
 
