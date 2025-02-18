@@ -34,7 +34,7 @@ const getRandomInt = (max: number): number => Math.floor(Math.random() * max)
 export function HyperNumber({
   value = 0,
   className,
-  duration = 800,
+  duration = 400,
   delay = 0,
   as: Component = "div",
   startOnView = false,
