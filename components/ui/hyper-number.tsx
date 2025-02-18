@@ -105,7 +105,7 @@ export function HyperNumber({
                 : characterSet[getRandomInt(characterSet.length)] || ""
           ),
         )
-        iterationCount.current = iterationCount.current + 0.02
+        iterationCount.current = iterationCount.current + 0.05
       } else {
         setIsAnimating(false)
         clearInterval(interval)
