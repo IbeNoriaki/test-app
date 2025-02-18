@@ -34,7 +34,7 @@ const getRandomInt = (max: number): number => Math.floor(Math.random() * max)
 export function HyperNumber({
   value = 0,
   className,
-  duration = 400,
+  duration = 800,
   delay = 0,
   as: Component = "div",
   startOnView = false,
@@ -105,7 +105,7 @@ export function HyperNumber({
                 : characterSet[getRandomInt(characterSet.length)] || ""
           ),
         )
-        iterationCount.current = iterationCount.current + 0.1
+        iterationCount.current = iterationCount.current + 0.02
       } else {
         setIsAnimating(false)
         clearInterval(interval)
