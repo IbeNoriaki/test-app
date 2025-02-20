@@ -87,8 +87,17 @@ export default {
   				}
   			},
   			'marquee-vertical-reverse': {
-  				from: { transform: 'translateY(calc(-100% - var(--gap)))' },
-  				to: { transform: 'translateY(0)' }
+  				from: {
+  					transform: 'translateY(calc(-100% - var(--gap)))'
+  				},
+  				to: {
+  					transform: 'translateY(0)'
+  				}
+  			},
+  			gradient: {
+  				to: {
+  					backgroundPosition: 'var(--bg-size) 0'
+  				}
   			}
   		},
   		animation: {
@@ -97,6 +106,7 @@ export default {
   			'marquee-right': 'marquee-right var(--duration) linear infinite',
   			'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
   			'marquee-vertical-reverse': 'marquee-vertical-reverse var(--duration) linear infinite',
+  			gradient: 'gradient 8s linear infinite'
   		}
   	}
   },

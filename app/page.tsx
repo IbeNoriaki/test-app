@@ -1,7 +1,6 @@
 import { FlickeringGrid } from "@/components/ui/flickering-grid";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import { HyperText } from "@/components/ui/hyper-text";
-import { DockMenu } from "@/components/ui/dock-menu";
 import { Marquee } from "@/components/ui/marquee";
 import { EventCard } from "@/components/ui/marquee";
 import { Event } from "@/types/events";
@@ -223,11 +222,6 @@ export default function HomePage() {
             <RankingGrid />
           </div>
         </main>
-
-        {/* Dock Menu */}
-        <div className="fixed bottom-0 left-0 right-0 flex justify-center p-4 z-20">
-          <DockMenu />
-        </div>
       </div>
     </div>
   );

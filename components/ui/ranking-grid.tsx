@@ -55,9 +55,7 @@ export function RankingGrid() {
   )
 
   return (
-    <div className="w-full max-w-3xl mx-auto px-2">
-      <h2 className="text-sm font-bold mb-3 px-1">Ranking Top 10</h2>
-      
+    <div className="w-full max-w-3xl mx-auto px-2">      
       <div className="relative w-full" style={{ aspectRatio: '4/3' }}>
         <div className="absolute inset-0 bg-background/50 border border-border flex rounded-xl overflow-hidden">
           {/* 左側のグリッド */}
