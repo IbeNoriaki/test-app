@@ -18,6 +18,7 @@ import { HyperText } from "@/components/ui/hyper-text"
 import { CarouselPluginWithAvatar } from "@/components/ui/carousel-plugin-with-avatar"
 import { RankingGrid } from "@/components/ui/ranking-grid"
 import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text"
+import { AssetTable } from "@/components/ui/asset-table"
 
 const NAVIGATION_ITEMS = [
   { href: "/", icon: HomeIcon, label: "ホーム" },
@@ -25,6 +26,262 @@ const NAVIGATION_ITEMS = [
   { href: "/profile", icon: UserIcon, label: "プロフィール" },
   { href: "/explore", icon: LayoutGridIcon, label: "探索" },
 ]
+
+const getLast7Days = () => {
+  const dates = Array.from({ length: 7 }, (_, i) => {
+    const d = new Date();
+    d.setDate(d.getDate() - (6 - i));
+    return d.toISOString().split('T')[0];
+  });
+  return dates;
+};
+
+const dates = getLast7Days();
+
+const suggestionAssets = [
+  {
+    id: "1",
+    name: "Gag Token",
+    symbol: "$GYAG",
+    balance: 1000,
+    price: 0.15,
+    change24h: 5.2,
+    imageUrl: "/networks/op.png",
+    chartData: [
+      { date: dates[0], price: 0.10 },
+      { date: dates[1], price: 0.12 },
+      { date: dates[2], price: 0.11 },
+      { date: dates[3], price: 0.13 },
+      { date: dates[4], price: 0.14 },
+      { date: dates[5], price: 0.145 },
+      { date: dates[6], price: 0.15 },
+    ],
+    purchasers: [
+      { imageUrl: "https://avatar.vercel.sh/alice", profileUrl: '#' },
+      { imageUrl: "https://avatar.vercel.sh/bob", profileUrl: '#' },
+      { imageUrl: "https://avatar.vercel.sh/charlie", profileUrl: '#' },
+      { imageUrl: "https://avatar.vercel.sh/dave", profileUrl: '#' },
+      { imageUrl: "https://avatar.vercel.sh/eve", profileUrl: '#' },
+      { imageUrl: "https://avatar.vercel.sh/frank", profileUrl: '#' }
+    ],
+    numHolders: 9
+  },
+  {
+    id: "3",
+    name: "Optimism",
+    symbol: "OP",
+    balance: 500,
+    price: 3.45,
+    change24h: 8.7,
+    imageUrl: "/networks/op.png",
+    chartData: [
+      { date: dates[0], price: 2.8 },
+      { date: dates[1], price: 3.1 },
+      { date: dates[2], price: 3.0 },
+      { date: dates[3], price: 3.2 },
+      { date: dates[4], price: 3.3 },
+      { date: dates[5], price: 3.45 },
+      { date: dates[6], price: 3.45 },
+    ],
+    purchasers: [
+      { imageUrl: "https://avatar.vercel.sh/ian", profileUrl: '#' },
+      { imageUrl: "https://avatar.vercel.sh/jack", profileUrl: '#' },
+      { imageUrl: "https://avatar.vercel.sh/kelly", profileUrl: '#' }
+    ]
+  },
+  {
+    id: "16",
+    name: "Celestia",
+    symbol: "TIA",
+    balance: 100,
+    price: 12.45,
+    change24h: 8.9,
+    imageUrl: "/networks/op.png",
+    chartData: [
+      { date: dates[0], price: 11.2 },
+      { date: dates[1], price: 11.5 },
+      { date: dates[2], price: 11.8 },
+      { date: dates[3], price: 12.0 },
+      { date: dates[4], price: 12.2 },
+      { date: dates[5], price: 12.4 },
+      { date: dates[6], price: 12.45 },
+    ],
+    purchasers: [
+      { imageUrl: "https://avatar.vercel.sh/mike", profileUrl: '#' },
+      { imageUrl: "https://avatar.vercel.sh/nancy", profileUrl: '#' },
+      { imageUrl: "https://avatar.vercel.sh/oscar", profileUrl: '#' },
+      { imageUrl: "https://avatar.vercel.sh/pat", profileUrl: '#' }
+    ]
+  },
+  {
+    id: "18",
+    name: "Immutable",
+    symbol: "IMX",
+    balance: 750,
+    price: 3.15,
+    change24h: -4.2,
+    imageUrl: "/networks/op.png",
+    chartData: [
+      { date: dates[0], price: 3.4 },
+      { date: dates[1], price: 3.35 },
+      { date: dates[2], price: 3.3 },
+      { date: dates[3], price: 3.25 },
+      { date: dates[4], price: 3.2 },
+      { date: dates[5], price: 3.18 },
+      { date: dates[6], price: 3.15 },
+    ],
+    purchasers: [
+      { imageUrl: "https://avatar.vercel.sh/quinn", profileUrl: '#' },
+      { imageUrl: "https://avatar.vercel.sh/rachel", profileUrl: '#' }
+    ]
+  },
+  {
+    id: "23",
+    name: "Synthetix",
+    symbol: "SNX",
+    balance: 300,
+    price: 3.25,
+    change24h: 4.8,
+    imageUrl: "/networks/op.png",
+    purchasers: [
+      { imageUrl: "https://avatar.vercel.sh/alpha", profileUrl: '#' },
+      { imageUrl: "https://avatar.vercel.sh/beta", profileUrl: '#' }
+    ]
+  },
+  {
+    id: "24",
+    name: "Render",
+    symbol: "RNDR",
+    balance: 150,
+    price: 7.85,
+    change24h: -2.3,
+    imageUrl: "/networks/op.png",
+    purchasers: [
+      { imageUrl: "https://avatar.vercel.sh/gamma", profileUrl: '#' },
+      { imageUrl: "https://avatar.vercel.sh/delta", profileUrl: '#' }
+    ]
+  },
+  {
+    id: "25",
+    name: "Injective",
+    symbol: "INJ",
+    balance: 75,
+    price: 34.20,
+    change24h: 6.7,
+    imageUrl: "/networks/op.png",
+    purchasers: [
+      { imageUrl: "https://avatar.vercel.sh/epsilon", profileUrl: '#' }
+    ]
+  },
+  {
+    id: "26",
+    name: "Sui",
+    symbol: "SUI",
+    balance: 1200,
+    price: 1.65,
+    change24h: -1.2,
+    imageUrl: "/networks/op.png",
+    purchasers: [
+      { imageUrl: "https://avatar.vercel.sh/zeta", profileUrl: '#' }
+    ]
+  },
+  {
+    id: "27",
+    name: "Stacks",
+    symbol: "STX",
+    balance: 800,
+    price: 2.35,
+    change24h: 3.1,
+    imageUrl: "/networks/op.png",
+    purchasers: [
+      { imageUrl: "https://avatar.vercel.sh/eta", profileUrl: '#' }
+    ]
+  },
+  {
+    id: "28",
+    name: "Mantle",
+    symbol: "MNT",
+    balance: 2500,
+    price: 0.95,
+    change24h: 2.8,
+    imageUrl: "/networks/op.png",
+    purchasers: [
+      { imageUrl: "https://avatar.vercel.sh/theta", profileUrl: '#' }
+    ]
+  },
+  {
+    id: "29",
+    name: "Sei",
+    symbol: "SEI",
+    balance: 1800,
+    price: 0.75,
+    change24h: 5.6,
+    imageUrl: "/networks/op.png",
+    purchasers: [
+      { imageUrl: "https://avatar.vercel.sh/iota", profileUrl: '#' }
+    ]
+  },
+  {
+    id: "30",
+    name: "Base",
+    symbol: "BASE",
+    balance: 1000,
+    price: 0.98,
+    change24h: -3.2,
+    imageUrl: "/networks/op.png",
+    purchasers: [
+      { imageUrl: "https://avatar.vercel.sh/kappa", profileUrl: '#' }
+    ]
+  },
+  {
+    id: "31",
+    name: "Aptos",
+    symbol: "APT",
+    balance: 250,
+    price: 15.45,
+    change24h: 7.8,
+    imageUrl: "/networks/op.png",
+    purchasers: [
+      { imageUrl: "https://avatar.vercel.sh/lambda", profileUrl: '#' }
+    ]
+  },
+  {
+    id: "32",
+    name: "Near",
+    symbol: "NEAR",
+    balance: 450,
+    price: 4.25,
+    change24h: -1.5,
+    imageUrl: "/networks/op.png",
+    purchasers: [
+      { imageUrl: "https://avatar.vercel.sh/mu", profileUrl: '#' }
+    ]
+  },
+  {
+    id: "33",
+    name: "Hedera",
+    symbol: "HBAR",
+    balance: 10000,
+    price: 0.12,
+    change24h: 4.2,
+    imageUrl: "/networks/op.png",
+    purchasers: [
+      { imageUrl: "https://avatar.vercel.sh/nu", profileUrl: '#' }
+    ]
+  },
+  {
+    id: "34",
+    name: "Internet Computer",
+    symbol: "ICP",
+    balance: 100,
+    price: 12.85,
+    change24h: 9.4,
+    imageUrl: "/networks/op.png",
+    purchasers: [
+      { imageUrl: "https://avatar.vercel.sh/xi", profileUrl: '#' }
+    ]
+  }
+];
 
 export default function Top2Page() {
   return (
@@ -62,7 +319,7 @@ export default function Top2Page() {
         </header>
 
         {/* Main content area */}
-        <main className="flex flex-col gap-4 pt-16">
+        <main className="flex flex-col gap-4 pt-16 pb-4">
           {/* Activities section */}
           <div className="px-4">
             <div className="mb-3 px-1 max-w-3xl mx-auto">
@@ -94,7 +351,33 @@ export default function Top2Page() {
             </div>
             <RankingGrid />
           </div>
+
+          {/* Suggestions Section */}
+          <div className="mt-8 px-4">
+            <div className="max-w-3xl mx-auto">
+              <div className="space-y-1">
+                <h2 className="text-lg font-semibold">Suggestions</h2>
+                <p className="text-sm text-muted-foreground">
+                  Discover new tokens that might interest you based on your holdings.
+                </p>
+              </div>
+              <Separator className="my-4" />
+              <div className="flex h-5 items-center space-x-4 text-sm">
+                <div>Popular</div>
+                <Separator orientation="vertical" />
+                <div>New</div>
+                <Separator orientation="vertical" />
+                <div>Trending</div>
+              </div>
+              <div className="mt-4">
+                <AssetTable assets={suggestionAssets} />
+              </div>
+            </div>
+          </div>
         </main>
+
+        {/* Footer space for Dock */}
+        <footer className="h-20" />
 
         {/* Dock Navigation */}
         <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
