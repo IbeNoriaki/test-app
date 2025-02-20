@@ -87,7 +87,7 @@ export default function Top2Page() {
                 <Crown className="size-4 text-yellow-500" />
                 <hr className="mx-2 h-4 w-px shrink-0 bg-gray-300" />
                 <span className="inline animate-gradient bg-gradient-to-r from-[#22c55e] via-[#ef4444] to-[#22c55e] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent">
-                  人気のファントークン
+                  人気クリエイター
                 </span>
                 <ChevronRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
               </AnimatedGradientText>
