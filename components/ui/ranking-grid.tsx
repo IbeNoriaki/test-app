@@ -66,13 +66,14 @@ export function RankingGrid() {
   const GridItem = ({ data, className, isLarge = false }: { 
     data: FanData, 
     className: string,
-    isLarge?: boolean
+    isLarge?: boolean,
   }) => (
     <div className={cn("flex items-center justify-center relative", className)}>
       <Image 
         src={data.avatarPath} 
         alt={data.name}
         fill
+        priority
         className="object-cover"
       />
       <TokenInfo data={data} isLarge={isLarge} />
