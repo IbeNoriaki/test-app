@@ -1,6 +1,6 @@
 "use client"
 
-import { HomeIcon, WalletIcon, UserIcon, LayoutGridIcon, ChevronRight } from "lucide-react"
+import { HomeIcon, WalletIcon, UserIcon, LayoutGridIcon, ChevronRight, Crown } from "lucide-react"
 import Link from "next/link"
 import { ModeToggle } from "@/components/ui/mode-toggle"
 import { buttonVariants } from "@/components/ui/button"
@@ -70,7 +70,7 @@ export default function Top2Page() {
               🎉 <hr className="mx-2 h-4 w-px shrink-0 bg-gray-300" />{" "}
 
                 <span className="inline animate-gradient bg-gradient-to-r from-[#60A5FA] via-[#9c40ff] to-[#60A5FA] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent">
-                  最近の推し活
+                  みんなの推し活状況
                 </span>
                 <ChevronRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
 
@@ -82,7 +82,16 @@ export default function Top2Page() {
 
           {/* Ranking Grid */}
           <div className="mt-4">
-            <h2 className="text-sm font-bold mb-3 px-1 max-w-3xl mx-auto text-right">人気のファントークン</h2>
+            <div className="mb-3 px-1 max-w-3xl mx-auto">
+              <AnimatedGradientText>
+                <Crown className="size-4 text-yellow-500" />
+                <hr className="mx-2 h-4 w-px shrink-0 bg-gray-300" />
+                <span className="inline animate-gradient bg-gradient-to-r from-[#22c55e] via-[#ef4444] to-[#22c55e] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent">
+                  人気のファントークン
+                </span>
+                <ChevronRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+              </AnimatedGradientText>
+            </div>
             <RankingGrid />
           </div>
         </main>
