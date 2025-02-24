@@ -1,6 +1,6 @@
 "use client"
 
-import { HomeIcon, WalletIcon, UserIcon, LayoutGridIcon, ChevronRight, Crown } from "lucide-react"
+import { HomeIcon, WalletIcon, UserIcon, LayoutGridIcon, ChevronRight, Crown, Antenna } from "lucide-react"
 import Link from "next/link"
 import { ModeToggle } from "@/components/ui/mode-toggle"
 import { buttonVariants } from "@/components/ui/button"
@@ -19,8 +19,12 @@ import { CarouselPluginWithAvatar } from "@/components/ui/carousel-plugin-with-a
 import { RankingGrid } from "@/components/ui/ranking-grid"
 import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text"
 import { AssetTable } from "@/components/ui/asset-table"
-import { LineShadowText } from "@/components/magicui/line-shadow-text"
-import { useTheme } from "next-themes"
+import { 
+  Menubar,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarTrigger,
+} from "@/components/ui/menubar"
 
 const NAVIGATION_ITEMS = [
   { href: "/", icon: HomeIcon, label: "ホーム" },
@@ -295,9 +299,6 @@ const suggestionAssets = [
 ];
 
 export default function Top2Page() {
-  const theme = useTheme();
-  const shadowColor = theme.resolvedTheme === "dark" ? "white" : "black";
-
   return (
     <div className="relative min-h-screen">
       {/* Background FlickeringGrid */}
@@ -374,23 +375,41 @@ export default function Top2Page() {
           <div className="mt-8 px-4">
             <div className="max-w-3xl mx-auto">
               <div className="space-y-1">
-                <h2 className="text-lg font-semibold">
-                  <LineShadowText shadowColor={shadowColor}>
-                    Suggestions
-                  </LineShadowText>
-                </h2>
-                <p className="text-sm text-muted-foreground">
-                  Discover new tokens that might interest you based on your holdings.
-                </p>
+                <AnimatedGradientText>
+                  <Antenna className="size-4 text-blue-500" />
+                  <hr className="mx-2 h-4 w-px shrink-0 bg-gray-300" />
+                  <span className="inline animate-gradient bg-gradient-to-r from-[#60A5FA] via-[#9c40ff] to-[#60A5FA] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent">
+                    クリエイター情報局
+                  </span>
+                </AnimatedGradientText>
               </div>
-              <Separator className="my-4" />
-              <div className="flex h-5 items-center space-x-4 text-sm">
-                <div>Popular</div>
-                <Separator orientation="vertical" />
-                <div>New</div>
-                <Separator orientation="vertical" />
-                <div>Trending</div>
-              </div>
+             
+              <Menubar className="border-none">
+                <MenubarMenu>
+                  <MenubarTrigger className="cursor-pointer">人気順</MenubarTrigger>
+                  {/*<MenubarContent>
+                     <MenubarItem>今日</MenubarItem> 
+                     <MenubarItem>今週</MenubarItem> 
+                     <MenubarItem>今月</MenubarItem> 
+                  </MenubarContent> */}
+                </MenubarMenu>
+                <MenubarSeparator />
+                <MenubarMenu>
+                  <MenubarTrigger className="cursor-pointer">新着順</MenubarTrigger>
+                  {/* <MenubarContent>
+                     <MenubarItem>最新</MenubarItem> 
+                     <MenubarItem>注目</MenubarItem> 
+                  </MenubarContent>　*/}
+                </MenubarMenu>
+                <MenubarSeparator />
+                <MenubarMenu>
+                  <MenubarTrigger className="cursor-pointer">上昇率順</MenubarTrigger>
+                  {/* <MenubarContent>
+                    <MenubarItem>急上昇</MenubarItem>
+                    <MenubarItem>話題</MenubarItem>
+                  </MenubarContent> */}
+                </MenubarMenu>
+              </Menubar>
               <div className="mt-4">
                 <AssetTable assets={suggestionAssets} />
               </div>
