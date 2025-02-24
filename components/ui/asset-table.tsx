@@ -38,15 +38,22 @@ interface AssetTableProps {
 }
 
 export function AssetTable({ assets }: AssetTableProps) {
-  const ITEMS_PER_PAGE = 15;
   const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 15;
 
+  // Calculate total pages
   const totalPages = Math.ceil(assets.length / ITEMS_PER_PAGE);
-  
+
+  // Get current page items
   const getCurrentPageItems = () => {
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
     return assets.slice(startIndex, endIndex);
+  };
+
+  // Handle page changes
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
   };
 
   return (
@@ -117,15 +124,9 @@ export function AssetTable({ assets }: AssetTableProps) {
           <Pagination>
             <PaginationContent>
               <PaginationItem>
-                <PaginationPrevious
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (currentPage > 1) setCurrentPage(currentPage - 1);
-                  }}
-                  className={cn(
-                    currentPage === 1 && "pointer-events-none opacity-50"
-                  )}
+                <PaginationPrevious 
+                  onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
+                  className="cursor-pointer"
                 />
               </PaginationItem>
 
@@ -136,7 +137,7 @@ export function AssetTable({ assets }: AssetTableProps) {
                     isActive={currentPage === page}
                     onClick={(e) => {
                       e.preventDefault();
-                      setCurrentPage(page);
+                      handlePageChange(page);
                     }}
                   >
                     {page}
@@ -145,15 +146,9 @@ export function AssetTable({ assets }: AssetTableProps) {
               ))}
 
               <PaginationItem>
-                <PaginationNext
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
-                  }}
-                  className={cn(
-                    currentPage === totalPages && "pointer-events-none opacity-50"
-                  )}
+                <PaginationNext 
+                  onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
+                  className="cursor-pointer"
                 />
               </PaginationItem>
             </PaginationContent>

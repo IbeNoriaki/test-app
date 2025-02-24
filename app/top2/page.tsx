@@ -19,6 +19,8 @@ import { CarouselPluginWithAvatar } from "@/components/ui/carousel-plugin-with-a
 import { RankingGrid } from "@/components/ui/ranking-grid"
 import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text"
 import { AssetTable } from "@/components/ui/asset-table"
+import { LineShadowText } from "@/components/magicui/line-shadow-text"
+import { useTheme } from "next-themes"
 
 const NAVIGATION_ITEMS = [
   { href: "/", icon: HomeIcon, label: "ホーム" },
@@ -143,6 +145,15 @@ const suggestionAssets = [
     price: 3.25,
     change24h: 4.8,
     imageUrl: "/networks/op.png",
+    chartData: [
+      { date: dates[0], price: 3.0 },
+      { date: dates[1], price: 3.1 },
+      { date: dates[2], price: 3.15 },
+      { date: dates[3], price: 3.2 },
+      { date: dates[4], price: 3.22 },
+      { date: dates[5], price: 3.24 },
+      { date: dates[6], price: 3.25 },
+    ],
     purchasers: [
       { imageUrl: "https://avatar.vercel.sh/alpha", profileUrl: '#' },
       { imageUrl: "https://avatar.vercel.sh/beta", profileUrl: '#' }
@@ -284,6 +295,9 @@ const suggestionAssets = [
 ];
 
 export default function Top2Page() {
+  const theme = useTheme();
+  const shadowColor = theme.resolvedTheme === "dark" ? "white" : "black";
+
   return (
     <div className="relative min-h-screen">
       {/* Background FlickeringGrid */}
@@ -308,13 +322,17 @@ export default function Top2Page() {
         {/* Header with ModeToggle and HyperText */}
         <header className="fixed top-0 left-0 right-0 flex flex-col z-20">
           <div className="flex justify-between items-center px-2 py-1.5 max-w-3xl mx-auto w-full">
-            <HyperText 
-              text="pumpum.jp" 
-              className="text-lg sm:text-xl font-mono tracking-tight lowercase"
-              duration={500}
-              animateOnHover
-            />
-            <ModeToggle />
+            <div className="flex flex-col items-start">
+              <HyperText 
+                text="pumpum.jp" 
+                className="text-lg sm:text-xl font-mono tracking-tight lowercase"
+                duration={500}
+                animateOnHover
+              />
+              <span className="text-xs font-medium text-muted-foreground -mt-1">
+                ぱんぴゅーむ
+              </span>
+            </div>
           </div>
         </header>
 
@@ -356,7 +374,11 @@ export default function Top2Page() {
           <div className="mt-8 px-4">
             <div className="max-w-3xl mx-auto">
               <div className="space-y-1">
-                <h2 className="text-lg font-semibold">Suggestions</h2>
+                <h2 className="text-lg font-semibold">
+                  <LineShadowText shadowColor={shadowColor}>
+                    Suggestions
+                  </LineShadowText>
+                </h2>
                 <p className="text-sm text-muted-foreground">
                   Discover new tokens that might interest you based on your holdings.
                 </p>
