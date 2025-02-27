@@ -1,11 +1,24 @@
 import { FlickeringGrid } from "@/components/ui/flickering-grid";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import { HyperText } from "@/components/ui/hyper-text";
-import { ProfileCard } from "@/components/ui/profile-card";
 import { AssetGrid } from "@/components/ui/asset-grid";
 import { Separator } from "@/components/ui/separator";
 import { AssetTable } from "@/components/ui/asset-table";
 import { AnalyticsSummary } from "@/components/ui/analytics-summary"
+import { ProfileCard2 } from "@/components/ui/profile-card2";
+
+import { Send, Gift, Receipt, History, Coins } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { CustomDock, CustomDockIcon } from "@/components/ui/custom-dock";
+import { PulsatingButton } from "@/components/magicui/pulsating-button";
 
 export default function ProfilePage() {
   const getLast7Days = () => {
@@ -347,6 +360,14 @@ export default function ProfilePage() {
     }
   ];
 
+  const MENU_ITEMS = [
+    { href: "#send", icon: Send, label: "送る" },
+    { href: "#distribute", icon: Gift, label: "配る" },
+    { href: "#invoice", icon: Receipt, label: "請求する" },
+    { href: "#history", icon: History, label: "履歴" },
+    { href: "#point", icon: Coins, label: "Point" },
+  ];
+
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       {/* Background FlickeringGrid */}
@@ -381,17 +402,78 @@ export default function ProfilePage() {
           </div>
           <div className="relative w-full border-t border-border/50">
             <div className="w-full px-2 py-1.5">
-              <ProfileCard
-                nickname="pumpum"
-                walletAddress="0xa0Ae8F74dc1968a0269741FdC818685A578DAdB9"
+              <ProfileCard2
                 avatarUrl="/Avatar/image.png"
+                nickname="ユーザー名"
+                walletAddress="0x1234567890abcdef1234567890abcdef12345678"
               />
             </div>
           </div>
         </header>
 
+        {/* Pulsating Buttons */}
+        <div className="mt-40 mb-4 flex justify-center gap-4">
+          <PulsatingButton 
+            className="font-medium bg-indigo-500/90 hover:bg-indigo-600/90 text-indigo-50 shadow-md"
+            pulseColor="rgba(96, 165, 250, 0.5)"
+          >
+            <Send className="mr-2 size-5 opacity-90" /> 送付する
+          </PulsatingButton>
+          
+          <PulsatingButton 
+            className="font-medium bg-indigo-500/90 hover:bg-indigo-600/90 text-indigo-50 shadow-md"
+            pulseColor="rgba(96, 165, 250, 0.5)"
+          >
+            <Gift className="mr-2 size-5 opacity-90" /> 配布する
+          </PulsatingButton>
+          
+          <PulsatingButton 
+            className="font-medium bg-indigo-500/90 hover:bg-indigo-600/90 text-indigo-50 shadow-md"
+            pulseColor="rgba(96, 165, 250, 0.5)"
+          >
+            <Receipt className="mr-2 size-5 opacity-90" /> 要求する
+          </PulsatingButton>
+        </div>
+
+        {/* Menu Bar using CustomDock component */}
+        <div className="mt-4 mb-8 flex justify-center w-full max-w-3xl mx-auto">
+          <TooltipProvider>
+            <CustomDock 
+              className="bg-gradient-to-b from-blue-400/20 to-blue-500/30 backdrop-blur-md border-white/20 w-[90%] px-2 shadow-md dark:from-blue-500/20 dark:to-blue-600/30 dark:border-white/10 h-[70px]"
+              iconSize={40}
+              iconMagnification={56}
+              iconDistance={300}
+            >
+              {MENU_ITEMS.map((item) => (
+                <CustomDockIcon key={item.label}>
+                  <div className="flex flex-col items-center">
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Link
+                          href={item.href}
+                          aria-label={item.label}
+                          className={cn(
+                            buttonVariants({ variant: "ghost", size: "icon" }),
+                            "size-10 rounded-full bg-white/20 dark:bg-white/10 hover:bg-white/30 dark:hover:bg-white/20 backdrop-blur-sm"
+                          )}
+                        >
+                          <item.icon className="size-5" />
+                        </Link>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>{item.label}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                    <span className="text-xs mt-1 font-medium whitespace-nowrap">{item.label}</span>
+                  </div>
+                </CustomDockIcon>
+              ))}
+            </CustomDock>
+          </TooltipProvider>
+        </div>
+
         {/* Analytics Summary */}
-        <div className="mt-48 mb-8">
+        <div className="mb-8">
           <AnalyticsSummary />
         </div>
 

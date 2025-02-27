@@ -98,6 +98,14 @@ export default {
   				to: {
   					backgroundPosition: 'var(--bg-size) 0'
   				}
+  			},
+  			pulse: {
+  				'0%, 100%': {
+  					boxShadow: '0 0 0 0 var(--pulse-color)'
+  				},
+  				'50%': {
+  					boxShadow: '0 0 0 8px var(--pulse-color)'
+  				}
   			}
   		},
   		animation: {
@@ -106,7 +114,8 @@ export default {
   			'marquee-right': 'marquee-right var(--duration) linear infinite',
   			'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
   			'marquee-vertical-reverse': 'marquee-vertical-reverse var(--duration) linear infinite',
-  			gradient: 'gradient 8s linear infinite'
+  			gradient: 'gradient 8s linear infinite',
+  			pulse: 'pulse var(--duration) ease-out infinite'
   		}
   	}
   },
