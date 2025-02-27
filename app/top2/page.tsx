@@ -334,6 +334,7 @@ export default function Top2Page() {
                 ぱんぴゅーむ
               </span>
             </div>
+            
           </div>
         </header>
 
