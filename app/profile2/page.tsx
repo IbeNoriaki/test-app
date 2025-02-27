@@ -1,6 +1,6 @@
 "use client"
 
-import { HomeIcon, WalletIcon, UserIcon, LayoutGridIcon } from "lucide-react"
+import { HomeIcon, WalletIcon, UserIcon, LayoutGridIcon, MapIcon } from "lucide-react"
 import Link from "next/link"
 import { ModeToggle } from "@/components/ui/mode-toggle"
 import { buttonVariants } from "@/components/ui/button"
@@ -21,6 +21,7 @@ import BlurFade from "@/components/magicui/blur-fade"
 import { Badge } from "@/components/ui/badge"
 import { DATA } from "@/data/resume"
 import { Icons } from "@/components/ui/icons"
+import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text"
 
 const NAVIGATION_ITEMS = [
   { href: "/", icon: HomeIcon, label: "ホーム" },
@@ -104,7 +105,13 @@ export default function Page() {
           
           <section id="skills">
             <div className="space-y-2">
-              <h2 className="text-2xl font-bold">Achievements</h2>
+              <AnimatedGradientText>
+                <MapIcon className="h-5 w-5" /> <hr className="mx-2 h-4 w-px shrink-0 bg-gray-300" />
+                <span className="inline animate-gradient bg-gradient-to-r from-[#60A5FA] via-[#9c40ff] to-[#60A5FA] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent">
+                  推しロード
+                </span>
+               
+              </AnimatedGradientText>
               <div className="flex flex-wrap gap-2">
                 {ACHIEVEMENT_BADGES.map((badge) => (
                   <Badge
