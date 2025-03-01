@@ -1,6 +1,7 @@
 "use client"
 
-import { HomeIcon, WalletIcon, UserIcon, LayoutGridIcon, MapIcon } from "lucide-react"
+import { useState } from "react"
+import { HomeIcon, WalletIcon, UserIcon, LayoutGridIcon, MapIcon, Heart, Star } from "lucide-react"
 import Link from "next/link"
 import { ModeToggle } from "@/components/ui/mode-toggle"
 import { buttonVariants } from "@/components/ui/button"
@@ -49,7 +50,11 @@ const ACHIEVEMENT_BADGES = [
   { title: "Holder1000", icon: <Icons.users className="h-4 w-4" />, variant: "secondary" as BadgeVariant, achieved: false },
 ];
 
+type TabType = "pumpum" | "oshi" | "osa";
+
 export default function Page() {
+  const [activeTab, setActiveTab] = useState<TabType>("pumpum");
+
   return (
     <div className="relative min-h-screen">
       {/* Background FlickeringGrid */}
@@ -103,55 +108,108 @@ export default function Page() {
             {/* Progress bar will be added here */}
           </div>
           
-          <section id="skills">
-            <div className="space-y-2">
+          {/* Tabs navigation */}
+          <div className="flex justify-around overflow-x-auto pb-2 w-full max-w-xs mx-auto">
+            <div 
+              onClick={() => setActiveTab("pumpum")} 
+              className={`cursor-pointer flex flex-col items-center ${activeTab === "pumpum" ? "" : "opacity-60"}`}
+            >
+              <MapIcon className="h-5 w-5 mb-1" />
               <AnimatedGradientText>
-                <MapIcon className="h-5 w-5" /> <hr className="mx-2 h-4 w-px shrink-0 bg-gray-300" />
-                <span className="inline animate-gradient bg-gradient-to-r from-[#60A5FA] via-[#9c40ff] to-[#60A5FA] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent">
-                  推しロード
+                <span className="text-xs inline animate-gradient bg-gradient-to-r from-[#60A5FA] via-[#9c40ff] to-[#60A5FA] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent">
+                  ぱんぴゅーむ歴
                 </span>
-               
               </AnimatedGradientText>
-              <div className="flex flex-wrap gap-2">
-                {ACHIEVEMENT_BADGES.map((badge) => (
-                  <Badge
-                    key={badge.title}
-                    variant={badge.variant}
-                    className={cn(
-                      "flex items-center gap-1 bg-white text-black dark:bg-white dark:text-black",
-                      !badge.achieved && "opacity-40"
-                    )}
-                  >
-                    {badge.icon}
-                    {badge.title}
-                  </Badge>
-                ))}
-              </div>
             </div>
-          </section>
-          <section id="hackathons">
-            <div className="space-y-12 w-full py-12">
+            
+            <div 
+              onClick={() => setActiveTab("osa")} 
+              className={`cursor-pointer flex flex-col items-center ${activeTab === "osa" ? "" : "opacity-60"}`}
+            >
+              <Star className="h-5 w-5 mb-1" />
+              <AnimatedGradientText>
+                <span className="text-xs inline animate-gradient bg-gradient-to-r from-[#22c55e] via-[#10b981] to-[#22c55e] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent">
+                  推さ歴
+                </span>
+              </AnimatedGradientText>
+            </div>
+            
+            <div 
+              onClick={() => setActiveTab("oshi")} 
+              className={`cursor-pointer flex flex-col items-center ${activeTab === "oshi" ? "" : "opacity-60"}`}
+            >
+              <Heart className="h-5 w-5 mb-1" />
+              <AnimatedGradientText>
+                <span className="text-xs inline animate-gradient bg-gradient-to-r from-[#ef4444] via-[#ec4899] to-[#ef4444] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent">
+                  推し歴
+                </span>
+              </AnimatedGradientText>
+            </div>
+          </div>
+          
+          {/* Tab content */}
+          {activeTab === "pumpum" && (
+            <>
+              <section id="skills">
+                <div className="space-y-2">
+                  <div className="flex flex-wrap gap-2">
+                    {ACHIEVEMENT_BADGES.map((badge) => (
+                      <Badge
+                        key={badge.title}
+                        variant={badge.variant}
+                        className={cn(
+                          "flex items-center gap-1 bg-white text-black dark:bg-white dark:text-black",
+                          !badge.achieved && "opacity-40"
+                        )}
+                      >
+                        {badge.icon}
+                        {badge.title}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              </section>
               
-              <BlurFade delay={BLUR_FADE_DELAY * 14}>
-                <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
-                  {DATA.hackathons.map((project, id) => (
-                    <BlurFade
-                      key={project.description + project.dates}
-                      delay={BLUR_FADE_DELAY * 15 + id * 0.05}
-                    >
-                      <HackathonCard
-                        description={project.description}
-                        dates={project.dates}
-                        image={project.image}
-                        links={project.links}
-                        isLocked={id >= 3}
-                      />
-                    </BlurFade>
-                  ))}
-                </ul>
-              </BlurFade>
-            </div>
-          </section>
+              <section id="hackathons">
+                <div className="space-y-12 w-full py-12">
+                  <BlurFade delay={BLUR_FADE_DELAY * 14}>
+                    <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
+                      {DATA.hackathons.map((project, id) => (
+                        <BlurFade
+                          key={project.description + project.dates}
+                          delay={BLUR_FADE_DELAY * 15 + id * 0.05}
+                        >
+                          <HackathonCard
+                            description={project.description}
+                            dates={project.dates}
+                            image={project.image}
+                            links={project.links}
+                            isLocked={id >= 3}
+                          />
+                        </BlurFade>
+                      ))}
+                    </ul>
+                  </BlurFade>
+                </div>
+              </section>
+            </>
+          )}
+          
+          {activeTab === "oshi" && (
+            <section id="oshi-history">
+              <div className="space-y-2">
+                <p className="text-muted-foreground">推し歴のコンテンツがここに表示されます</p>
+              </div>
+            </section>
+          )}
+          
+          {activeTab === "osa" && (
+            <section id="osa-history">
+              <div className="space-y-2">
+                <p className="text-muted-foreground">推さ歴のコンテンツがここに表示されます</p>
+              </div>
+            </section>
+          )}
         </main>
       </div>
 
