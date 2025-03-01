@@ -23,6 +23,53 @@ import { Badge } from "@/components/ui/badge"
 import { DATA } from "@/data/resume"
 import { Icons } from "@/components/ui/icons"
 import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text"
+import { AssetTable } from "@/components/ui/asset-table"
+import { 
+  Menubar,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarTrigger,
+} from "@/components/ui/menubar"
+
+// サンプルデータ
+const suggestionAssets = [
+  {
+    id: "1",
+    name: "ぱんぴゅーむ",
+    symbol: "PUMPUM",
+    price: 0.0025,
+    change24h: 12.5,
+    imageUrl: "/Avatar/image.png",
+    purchasers: []
+  },
+  {
+    id: "2",
+    name: "クリエイターA",
+    symbol: "CREA",
+    price: 0.0015,
+    change24h: 8.3,
+    imageUrl: "/Avatar/image.png",
+    purchasers: []
+  },
+  {
+    id: "3",
+    name: "クリエイターB",
+    symbol: "CREB",
+    price: 0.0035,
+    change24h: -4.2,
+    imageUrl: "/Avatar/image.png",
+    purchasers: []
+  },
+  {
+    id: "4",
+    name: "クリエイターC",
+    symbol: "CREC",
+    price: 0.0018,
+    change24h: 5.7,
+    imageUrl: "/Avatar/image.png",
+    purchasers: []
+  },
+];
 
 const NAVIGATION_ITEMS = [
   { href: "/", icon: HomeIcon, label: "ホーム" },
@@ -112,7 +159,11 @@ export default function Page() {
           <div className="flex justify-around overflow-x-auto pb-2 w-full max-w-xs mx-auto">
             <div 
               onClick={() => setActiveTab("pumpum")} 
-              className={`cursor-pointer flex flex-col items-center ${activeTab === "pumpum" ? "" : "opacity-60"}`}
+              className={`cursor-pointer flex flex-col items-center p-2 rounded-lg transition-all duration-200 ${
+                activeTab === "pumpum" 
+                  ? "bg-primary/10 scale-105 shadow-sm" 
+                  : "opacity-40 hover:opacity-60"
+              }`}
             >
               <MapIcon className="h-5 w-5 mb-1" />
               <AnimatedGradientText>
@@ -124,7 +175,11 @@ export default function Page() {
             
             <div 
               onClick={() => setActiveTab("osa")} 
-              className={`cursor-pointer flex flex-col items-center ${activeTab === "osa" ? "" : "opacity-60"}`}
+              className={`cursor-pointer flex flex-col items-center p-2 rounded-lg transition-all duration-200 ${
+                activeTab === "osa" 
+                  ? "bg-green-500/10 scale-105 shadow-sm" 
+                  : "opacity-40 hover:opacity-60"
+              }`}
             >
               <Star className="h-5 w-5 mb-1" />
               <AnimatedGradientText>
@@ -136,7 +191,11 @@ export default function Page() {
             
             <div 
               onClick={() => setActiveTab("oshi")} 
-              className={`cursor-pointer flex flex-col items-center ${activeTab === "oshi" ? "" : "opacity-60"}`}
+              className={`cursor-pointer flex flex-col items-center p-2 rounded-lg transition-all duration-200 ${
+                activeTab === "oshi" 
+                  ? "bg-red-500/10 scale-105 shadow-sm" 
+                  : "opacity-40 hover:opacity-60"
+              }`}
             >
               <Heart className="h-5 w-5 mb-1" />
               <AnimatedGradientText>
@@ -194,19 +253,34 @@ export default function Page() {
               </section>
             </>
           )}
-          
+
+          {activeTab === "osa" && (
+            <section id="osa-history">
+              <div className="mt-8 px-4">
+                <div className="max-w-3xl mx-auto">
+                  
+                 
+                  <Menubar className="border-none inline-flex">
+  <MenubarMenu>
+    <MenubarTrigger className="cursor-pointer">ホルダー順</MenubarTrigger>
+  </MenubarMenu>
+  <MenubarSeparator />
+  <MenubarMenu>
+    <MenubarTrigger className="cursor-pointer">新着順</MenubarTrigger>
+  </MenubarMenu>
+</Menubar>
+                  <div className="mt-4">
+                    <AssetTable assets={suggestionAssets} />
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
+
           {activeTab === "oshi" && (
             <section id="oshi-history">
               <div className="space-y-2">
                 <p className="text-muted-foreground">推し歴のコンテンツがここに表示されます</p>
-              </div>
-            </section>
-          )}
-          
-          {activeTab === "osa" && (
-            <section id="osa-history">
-              <div className="space-y-2">
-                <p className="text-muted-foreground">推さ歴のコンテンツがここに表示されます</p>
               </div>
             </section>
           )}
