@@ -13,12 +13,10 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import {
-  Coins,
   Download,
   Expand,
   History,
   Send,
-  Zap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
@@ -31,6 +29,7 @@ import {
 } from "@/components/ui/tooltip";
 import { CustomDock, CustomDockIcon } from "@/components/ui/custom-dock";
 import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text";
+import Image from "next/image";
 
 export default function ProfilePage() {
   const getLast7Days = () => {
@@ -377,7 +376,21 @@ export default function ProfilePage() {
     { href: "#distribute", icon: Expand, label: "配る" },
     { href: "#receive", icon: Download, label: "受け取る" },
     { href: "#history", icon: History, label: "履歴" },
-    { href: "#point", icon: Coins, label: "Point" },
+    { 
+      href: "#point", 
+      icon: () => (
+        <div className="relative size-9 overflow-hidden rounded-full flex items-center justify-center">
+          <Image 
+            src="/Avatar/battery.png" 
+            fill 
+            alt="Point" 
+            className="object-contain"
+            sizes="100%"
+          />
+        </div>
+      ), 
+      label: "Point" 
+    },
   ];
 
   return (
@@ -430,8 +443,21 @@ export default function ProfilePage() {
             <CardHeader className="pb-2">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Zap className="size-5 text-yellow-500" />
-                  <span>Volt</span>
+                  <div className="flex items-center gap-2">
+                    <div className="relative size-8 overflow-hidden rounded-full flex items-center justify-center">
+                      <Image 
+                        src="/Avatar/volt.png" 
+                        fill 
+                        alt="Volt" 
+                        className="object-contain"
+                        sizes="100%"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex items-end gap-1">
+                    <span>Volt</span>
+                    <span className="text-xs text-muted-foreground mb-0.5">(Million)</span>
+                  </div>
                 </CardTitle>
                 <CardDescription className="text-right">
                   <AnimatedGradientText>
@@ -444,9 +470,12 @@ export default function ProfilePage() {
             </CardHeader>
             <CardContent className="pb-2">
               <div className="flex items-center justify-between">
-                <div className="flex items-baseline gap-1">
-                  <span className="text-3xl font-bold">2,450</span>
-                  <span className="text-sm text-muted-foreground">V</span>
+                <div className="flex items-center">
+                  <div className="w-8"></div> {/* volt.pngと同じサイズの空白を作成 */}
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-3xl font-bold">2,450</span>
+                    <span className="text-sm text-muted-foreground">V</span>
+                  </div>
                 </div>
                 <div className="flex flex-col items-end">
                   <div className="text-sm text-green-500 flex items-center">
@@ -457,7 +486,6 @@ export default function ProfilePage() {
                   </div>
                 </div>
               </div>
-             
             </CardContent>
             
             {/* Divider */}
@@ -468,7 +496,15 @@ export default function ProfilePage() {
             {/* Point Section - Simplified */}
             <div className="px-6 py-3 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Coins className="size-4 text-emerald-500" />
+                <div className="relative size-8 overflow-hidden rounded-full flex items-center justify-center">
+                  <Image 
+                    src="/Avatar/battery.png" 
+                    fill 
+                    alt="Point" 
+                    className="object-contain"
+                    sizes="100%"
+                  />
+                </div>
                 <span className="text-sm font-medium">Point</span>
               </div>
               <div className="flex items-baseline gap-1">
