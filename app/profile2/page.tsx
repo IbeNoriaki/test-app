@@ -23,13 +23,13 @@ import { Badge } from "@/components/ui/badge"
 import { DATA } from "@/data/resume"
 import { Icons } from "@/components/ui/icons"
 import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text"
-import { AssetTable } from "@/components/ui/asset-table"
 import { 
   Menubar,
   MenubarMenu,
   MenubarSeparator,
   MenubarTrigger,
 } from "@/components/ui/menubar"
+import { HolderTable } from "@/components/ui/holder-table"
 
 // サンプルデータ
 const suggestionAssets = [
@@ -268,7 +268,7 @@ export default function Page() {
                     </MenubarMenu>
                   </Menubar>
                   <div className="mt-1">
-                    <AssetTable assets={suggestionAssets} />
+                    <HolderTable assets={suggestionAssets} />
                   </div>
                 </div>
               </div>
