@@ -14,9 +14,9 @@ import {
 import { Separator } from "@/components/ui/separator";
 import {
   Coins,
-  Gift,
+  Download,
+  Expand,
   History,
-  Receipt,
   Send,
   Zap,
 } from "lucide-react";
@@ -374,8 +374,8 @@ export default function ProfilePage() {
 
   const MENU_ITEMS = [
     { href: "#send", icon: Send, label: "送る" },
-    { href: "#distribute", icon: Gift, label: "配る" },
-    { href: "#invoice", icon: Receipt, label: "請求する" },
+    { href: "#distribute", icon: Expand, label: "配る" },
+    { href: "#receive", icon: Download, label: "受け取る" },
     { href: "#history", icon: History, label: "履歴" },
     { href: "#point", icon: Coins, label: "Point" },
   ];
@@ -457,12 +457,7 @@ export default function ProfilePage() {
                   </div>
                 </div>
               </div>
-              <div className="w-full bg-indigo-500/10 rounded-full h-2 mt-2">
-                <div 
-                  className="bg-gradient-to-r from-indigo-500 to-indigo-600 h-2 rounded-full" 
-                  style={{ width: '65%' }}
-                />
-              </div>
+             
             </CardContent>
             
             {/* Divider */}
@@ -485,7 +480,7 @@ export default function ProfilePage() {
         </div>
 
         {/* Menu Bar using CustomDock component */}
-        <div className="mt-[-8px] mb-8 flex justify-center w-full max-w-3xl mx-auto">
+        <div className="mt-[-12px] mb-4 flex justify-center w-full max-w-3xl mx-auto">
           <TooltipProvider>
             <CustomDock 
               className="bg-gradient-to-b from-blue-400/20 to-blue-500/30 backdrop-blur-md border-white/20 w-[80%] px-2 shadow-md dark:from-blue-500/20 dark:to-blue-600/30 dark:border-white/10 h-[70px]"
