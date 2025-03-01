@@ -255,21 +255,19 @@ export default function Page() {
           )}
 
           {activeTab === "osa" && (
-            <section id="osa-history">
-              <div className="mt-8 px-4">
+            <section id="osa-history" className="-mt-14">
+              <div className="px-4">
                 <div className="max-w-3xl mx-auto">
-                  
-                 
                   <Menubar className="border-none inline-flex">
-  <MenubarMenu>
-    <MenubarTrigger className="cursor-pointer">ホルダー順</MenubarTrigger>
-  </MenubarMenu>
-  <MenubarSeparator />
-  <MenubarMenu>
-    <MenubarTrigger className="cursor-pointer">新着順</MenubarTrigger>
-  </MenubarMenu>
-</Menubar>
-                  <div className="mt-4">
+                    <MenubarMenu>
+                      <MenubarTrigger className="cursor-pointer">ホルダー順</MenubarTrigger>
+                    </MenubarMenu>
+                    <MenubarSeparator />
+                    <MenubarMenu>
+                      <MenubarTrigger className="cursor-pointer">新着順</MenubarTrigger>
+                    </MenubarMenu>
+                  </Menubar>
+                  <div className="mt-1">
                     <AssetTable assets={suggestionAssets} />
                   </div>
                 </div>
