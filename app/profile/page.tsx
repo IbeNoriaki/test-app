@@ -1,13 +1,25 @@
-import { FlickeringGrid } from "@/components/ui/flickering-grid";
 import { ModeToggle } from "@/components/ui/mode-toggle";
+import { FlickeringGrid } from "@/components/ui/flickering-grid";
 import { HyperText } from "@/components/ui/hyper-text";
-import { AssetGrid } from "@/components/ui/asset-grid";
-import { Separator } from "@/components/ui/separator";
-import { AssetTable } from "@/components/ui/asset-table";
-import { AnalyticsSummary } from "@/components/ui/analytics-summary"
 import { ProfileCard2 } from "@/components/ui/profile-card2";
-
-import { Send, Gift, Receipt, History, Coins } from "lucide-react";
+import { AssetGrid } from "@/components/ui/asset-grid";
+import { AssetTable } from "@/components/ui/asset-table";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import {
+  Coins,
+  Gift,
+  History,
+  Receipt,
+  Send,
+  Zap,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
@@ -18,7 +30,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { CustomDock, CustomDockIcon } from "@/components/ui/custom-dock";
-import { PulsatingButton } from "@/components/magicui/pulsating-button";
+import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text";
 
 export default function ProfilePage() {
   const getLast7Days = () => {
@@ -411,35 +423,72 @@ export default function ProfilePage() {
           </div>
         </header>
 
-        {/* Pulsating Buttons */}
-        <div className="mt-40 mb-4 flex justify-center gap-4">
-          <PulsatingButton 
-            className="font-medium bg-indigo-500/90 hover:bg-indigo-600/90 text-indigo-50 shadow-md"
-            pulseColor="rgba(96, 165, 250, 0.5)"
-          >
-            <Send className="mr-2 size-5 opacity-90" /> 送付する
-          </PulsatingButton>
-          
-          <PulsatingButton 
-            className="font-medium bg-indigo-500/90 hover:bg-indigo-600/90 text-indigo-50 shadow-md"
-            pulseColor="rgba(96, 165, 250, 0.5)"
-          >
-            <Gift className="mr-2 size-5 opacity-90" /> 配布する
-          </PulsatingButton>
-          
-          <PulsatingButton 
-            className="font-medium bg-indigo-500/90 hover:bg-indigo-600/90 text-indigo-50 shadow-md"
-            pulseColor="rgba(96, 165, 250, 0.5)"
-          >
-            <Receipt className="mr-2 size-5 opacity-90" /> 要求する
-          </PulsatingButton>
+        {/* Volt Card with Points */}
+        <div className="mt-32 mb-0 px-2 max-w-3xl mx-auto">
+          <Card className="border-indigo-500/20 bg-transparent backdrop-blur-sm shadow-sm">
+            {/* Volt Section */}
+            <CardHeader className="pb-2">
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <Zap className="size-5 text-yellow-500" />
+                  <span>Volt</span>
+                </CardTitle>
+                <CardDescription className="text-right">
+                  <AnimatedGradientText>
+                    <span className="inline animate-gradient bg-gradient-to-r from-[#60A5FA] via-[#9c40ff] to-[#60A5FA] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent">
+                      推しの証
+                    </span>
+                  </AnimatedGradientText>
+                </CardDescription>
+              </div>
+            </CardHeader>
+            <CardContent className="pb-2">
+              <div className="flex items-center justify-between">
+                <div className="flex items-baseline gap-1">
+                  <span className="text-3xl font-bold">2,450</span>
+                  <span className="text-sm text-muted-foreground">V</span>
+                </div>
+                <div className="flex flex-col items-end">
+                  <div className="text-sm text-green-500 flex items-center">
+                    <span>+120 V</span>
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    過去24時間
+                  </div>
+                </div>
+              </div>
+              <div className="w-full bg-indigo-500/10 rounded-full h-2 mt-2">
+                <div 
+                  className="bg-gradient-to-r from-indigo-500 to-indigo-600 h-2 rounded-full" 
+                  style={{ width: '65%' }}
+                />
+              </div>
+            </CardContent>
+            
+            {/* Divider */}
+            <div className="px-6">
+              <div className="h-px w-full bg-indigo-500/20"></div>
+            </div>
+            
+            {/* Point Section - Simplified */}
+            <div className="px-6 py-3 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Coins className="size-4 text-emerald-500" />
+                <span className="text-sm font-medium">Point</span>
+              </div>
+              <div className="flex items-baseline gap-1">
+                <span className="text-xl font-bold">5,000</span>
+                <span className="text-xs text-muted-foreground">P</span>
+              </div>
+            </div>
+          </Card>
         </div>
 
         {/* Menu Bar using CustomDock component */}
-        <div className="mt-4 mb-8 flex justify-center w-full max-w-3xl mx-auto">
+        <div className="mt-[-8px] mb-8 flex justify-center w-full max-w-3xl mx-auto">
           <TooltipProvider>
             <CustomDock 
-              className="bg-gradient-to-b from-blue-400/20 to-blue-500/30 backdrop-blur-md border-white/20 w-[90%] px-2 shadow-md dark:from-blue-500/20 dark:to-blue-600/30 dark:border-white/10 h-[70px]"
+              className="bg-gradient-to-b from-blue-400/20 to-blue-500/30 backdrop-blur-md border-white/20 w-[80%] px-2 shadow-md dark:from-blue-500/20 dark:to-blue-600/30 dark:border-white/10 h-[70px]"
               iconSize={40}
               iconMagnification={56}
               iconDistance={300}
@@ -473,9 +522,9 @@ export default function ProfilePage() {
         </div>
 
         {/* Analytics Summary */}
-        <div className="mb-8">
+        {/* <div className="mb-8">
           <AnalyticsSummary />
-        </div>
+        </div> */}
 
         {/* Asset Grid */}
         <main className="pb-24">

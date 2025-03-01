@@ -47,7 +47,7 @@ export function ProfileCard2({
   return (
     <div className="flex items-start gap-4 px-2 py-1.5">
       <div className="shrink-0">
-        <Avatar className="size-16 sm:size-20 rounded-lg">
+        <Avatar className="size-12 sm:size-14 rounded-lg">
           <AvatarImage src={avatarUrl} alt={nickname} className="rounded-lg" />
           <AvatarFallback className="rounded-lg">{getInitials(nickname)}</AvatarFallback>
         </Avatar>
