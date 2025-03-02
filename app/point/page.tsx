@@ -138,7 +138,7 @@ export default function PointPage() {
                     <div className="p-2">
                       <div className="flex flex-col">
                         {/* バッテリーアイコン表示エリア - サイズアップ */}
-                        <div className="flex items-center gap-1.5">
+                        <div className="flex items-center gap-1.5 mb-1">
                           <div className="relative size-10 overflow-hidden rounded-full flex items-center justify-center bg-indigo-500/10">
                             <Image 
                               src="/Avatar/battery.png" 
@@ -162,14 +162,14 @@ export default function PointPage() {
                         </div>
                         
                         {/* ポイント情報 - センター揃え、サイズ強調 */}
-                        <div className="mb-0.5 -mt-0.5 text-center">
+                        <div className="mb-0.5 text-center">
                           <h3 className="font-bold text-base md:text-lg">{option.points.toLocaleString()} pt</h3>
                         </div>
                         
                         {/* 価格 - Badgeを使用して黒背景・白テキストで表示 */}
                         <div className="text-center">
                           <Badge 
-                            className="bg-black text-white border-transparent font-medium text-xs px-3 py-1"
+                            className="bg-black text-white border-transparent font-medium text-xs px-3 py-1 pointer-events-none"
                           >
                             ¥{option.price.toLocaleString()}
                           </Badge>
