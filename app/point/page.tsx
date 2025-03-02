@@ -5,10 +5,9 @@ import { FlickeringGrid } from "@/components/ui/flickering-grid";
 import { HyperText } from "@/components/ui/hyper-text";
 import { ProfileCard2 } from "@/components/ui/profile-card2";
 import { Card } from "@/components/ui/card";
-import { Wallet, X } from "lucide-react";
+import { Wallet } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text";
-import { NumberTicker } from "@/components/magicui/number-ticker";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { useState } from "react";
@@ -137,37 +136,26 @@ export default function PointPage() {
                     
                     <div className="p-2">
                       <div className="flex flex-col">
-                        {/* バッテリーアイコン表示エリア - サイズアップ */}
-                        <div className="flex items-center gap-1.5 mb-1">
-                          <div className="relative size-10 overflow-hidden rounded-full flex items-center justify-center bg-indigo-500/10">
-                            <Image 
-                              src="/Avatar/battery.png" 
-                              fill 
-                              alt="Point" 
-                              className="object-contain p-1"
-                              sizes="100%"
-                            />
-                          </div>
-                          <span className="text-sm font-medium text-muted-foreground flex items-center gap-1">
-                            <X 
-                              className="size-3 text-indigo-500 animate-pulse hover:scale-110 transition-transform mr-0.5" 
-                              strokeWidth={2.5}
-                            /> 
-                            <NumberTicker 
-                              value={option.batteries} 
-                              className="text-base font-bold text-muted-foreground" 
-                              delay={0.2 * index}
-                            />
-                          </span>
-                        </div>
-                        
                         {/* ポイント情報 - センター揃え、サイズ強調 */}
-                        <div className="mb-0.5 text-center">
-                          <h3 className="font-bold text-base md:text-lg">{option.points.toLocaleString()} pt</h3>
+                        <div className="mb-0.5 text-center relative">
+                          <div className="absolute left-0 top-1/2 -translate-y-1/2">
+                            <div className="relative size-10 overflow-hidden rounded-full flex items-center justify-center bg-indigo-500/10">
+                              <Image 
+                                src="/Avatar/battery.png" 
+                                fill 
+                                alt="Point" 
+                                className="object-contain p-1"
+                                sizes="100%"
+                              />
+                            </div>
+                          </div>
+                          <h3 className="font-bold text-base md:text-lg">
+                            {option.points.toLocaleString()} pt
+                          </h3>
                         </div>
                         
                         {/* 価格 - Badgeを使用して黒背景・白テキストで表示 */}
-                        <div className="text-center">
+                        <div className="text-center mt-1">
                           <Badge 
                             className="bg-black text-white border-transparent font-medium text-xs px-3 py-1 pointer-events-none"
                           >
